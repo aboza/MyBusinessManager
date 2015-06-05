@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
+    Document   : CustomerPage
+    Created on : 04/06/2015, 10:29:52 PM
     Author     : AlexisDev
 --%>
 
@@ -96,7 +96,20 @@
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
+                            <header>
+                                <h2>Clientes</h2>
+                                <h1>Clientes Activos</h1>
+                                <%-- <%ArrayList<Disc> discList = (ArrayList<Disc>) request.getAttribute("DiscList");%>
+                                 <div class="row">
+                                     <marquee onmouseover=this.stop() onmouseout=this.start() scrollAmount=2 scrollDelay=8 direction=up>
+                                         <%for (Disc actualDisc : discList) {%>
+                                         <A href="SingleDiscShowServlet?discId=<%=actualDisc.getId()%>" ><%=actualDisc.getTitle()%></A>
+                                         <div class="row"></div>
+                                         <%}%>
+                                --%>
+                                </marquee>
+                                </div>
+                            </header>
 
                         </article>
                     </div>
@@ -128,3 +141,4 @@
         </div>
     </body>
 </html>
+

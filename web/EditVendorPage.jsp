@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
+    Document   : EditVendor
+    Created on : 04/06/2015, 09:43:56 PM
     Author     : AlexisDev
 --%>
 
@@ -60,7 +60,7 @@
                             </p>
                             <a href="" class="button">Inventario</a>
                             <header>
-                                <h3><a href="">Proveedores</a></h3>
+                                <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
                             <p>
                                 Mante siempre a tus proveedores cerca, nunca
@@ -90,14 +90,48 @@
                                 a MyBusinessManeger
                             </p>
                             <a href="" class="button">Seguridad</a>
-
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
-
+                            <header>
+                                <h2>Proveedor</h2>  
+                            </header>
+                            <form method="post" action="">
+                                <h1>Nombre</h1>
+                                <input class="longtext" name="vendorName" id="vendorName">
+                                <h1>Compañia</h1>
+                                <input class="longtext" name="companyName" id="companyName">
+                                <h1>Contacto Directo</h1>
+                                <input class="longtext" name="contact" id="contact">
+                                <h1>Teléfono</h1>
+                                <input class="longtext" name="phone" id="phone">
+                                <h1>Teléfono Alt</h1>
+                                <input class="longtext" name="altphone" id="altphone">
+                                <h1>Fax</h1>
+                                <input class="longtext" name="fax" id="fax">
+                                <h1>Email</h1>
+                                <input class="longtext" name="email" id="email">
+                                <h1>Tipo de Proveedor</h1>
+                                <select class="select" name="vendorType" id="vendorType">           
+                                    <option class="option">Bebidas</option>
+                                    <option class="option">Granos</option>
+                                    <option class="option">Carnes</option>
+                                    <option class="option">Frutas y Vegetales</option>
+                                </select>
+                                <h1>Dirección</h1>
+                                <textarea class="textarea" id="description" name="description"></textarea>
+                                <div>
+                                <input class="button form-button-submit" type="submit" value="Ok">
+                                </div>
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                            </form>
                         </article>
                     </div>
                 </div>
