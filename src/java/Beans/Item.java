@@ -5,13 +5,14 @@
  */
 package Beans;
 import Beans.Vendor;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author AlexisDev
  */
-public class Item {
+public class Item  implements Serializable{
     private String name;
     private String code;
     private String description;

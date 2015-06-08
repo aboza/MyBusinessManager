@@ -104,7 +104,7 @@
                                 <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
                                 <div class="row">
                                     <%for (Customer actualCustomer : customerList) {%>
-                                    <A href="SingleCustomerServlet?discId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
+                                    <A href="SingleCustomerServlet?customerId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
                                     <div class="row"></div>
                                     <%}%>
                                 </div>

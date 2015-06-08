@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author AlexisDev
  */
 public class DAOVendor {
-    
+
     public ArrayList<Vendor> getAllVendors() {
         try {
             ArrayList<Vendor> resultList = new ArrayList<>();
@@ -48,5 +48,32 @@ public class DAOVendor {
             return null;
         }
     }
-    
+
+    public Vendor getSingleVendorById(int vendorId) {
+        try {
+            Vendor vendorBean = null;
+            OracleConnectionFactory connection = new OracleConnectionFactory();
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GETVENDOR_BY_ID);
+            statement.setInt(1, vendorId);
+            ResultSet var_resultSet = statement.executeQuery();
+            while (var_resultSet.next()) {
+                vendorBean = new Vendor();
+                vendorBean.setId(var_resultSet.getInt("VENDOR_ID"));
+                vendorBean.setName(var_resultSet.getString("NAME"));
+                vendorBean.setCompanyName(var_resultSet.getString("COMPANY_NAME"));
+                vendorBean.setPhone(var_resultSet.getString("PHONE"));
+                vendorBean.setFax(var_resultSet.getString("FAX"));
+                vendorBean.setEmail(var_resultSet.getString("EMAIL"));
+                vendorBean.setAltphone(var_resultSet.getString("ALT_PHONE"));
+                vendorBean.setAddress(var_resultSet.getString("ADDRESS"));
+                vendorBean.setVendorType(var_resultSet.getString("VENDOR_TYPE"));
+            }
+            return vendorBean;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
 }

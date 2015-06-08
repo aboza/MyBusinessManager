@@ -47,6 +47,33 @@ public class DAOCustomer {
             return null;
         }
     }
+    
+     public Customer getSingleCustomerById(int customerId) {
+        try {
+            Customer customerBean = null;
+            OracleConnectionFactory connection = new OracleConnectionFactory();
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GETCUSTOMER_BY_ID);
+            statement.setInt(1, customerId);
+            ResultSet var_resultSet = statement.executeQuery();
+            while (var_resultSet.next()) {
+                customerBean = new Customer();
+                customerBean.setId(var_resultSet.getInt("CUSTOMER_ID"));
+                customerBean.setName(var_resultSet.getString("NAME"));
+                customerBean.setCompanyName(var_resultSet.getString("COMPANY_NAME"));
+                customerBean.setPhone(var_resultSet.getString("PHONE"));
+                customerBean.setFax(var_resultSet.getString("FAX"));
+                customerBean.setEmail(var_resultSet.getString("EMAIL"));
+                customerBean.setBillTo(var_resultSet.getString("BILL_TO"));
+                customerBean.setShipTo(var_resultSet.getString("SHIP_TO"));
+                customerBean.setTerms(var_resultSet.getString("TERMS"));
+            }
+            return customerBean;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
 
     
 }

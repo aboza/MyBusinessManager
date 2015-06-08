@@ -4,6 +4,8 @@
     Author     : AlexisDev
 --%>
 
+
+<%@page import="Beans.Customer"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -98,28 +100,29 @@
                             <header>
                                 <h2>Cliente</h2>  
                             </header>
+                            <%Customer currentCustomer = (Customer) request.getAttribute("currentCustomer");%>
                             <form method="post" action="">
                                 <h1>Nombre</h1>
-                                <input class="longtext" name="customerName" id="customerName">
+                                <input class="longtext" name="customerName" id="customerName" value="<%=currentCustomer.getName()%>">
                                 <h1>Compañia</h1>
-                                <input class="longtext" name="companyName" id="companyName">
+                                <input class="longtext" name="companyName" id="companyName" value="<%=currentCustomer.getCompanyName()%>">
                                 <h1>Teléfono</h1>
-                                <input class="longtext" name="phone" id="phone">
+                                <input class="longtext" name="phone" id="phone" value="<%=currentCustomer.getPhone()%>">
                                 <h1>Fax</h1>
-                                <input class="longtext" name="fax" id="fax">
+                                <input class="longtext" name="fax" id="fax" value="<%=currentCustomer.getFax()%>">
                                 <h1>Email</h1>
-                                <input class="longtext" name="email" id="email">
+                                <input class="longtext" name="email" id="email" value="<%=currentCustomer.getEmail()%>">
                                 <h1>Terminos con el Cliente</h1>
-                                <select class="select" name="terms" id="terms">           
+                                <select class="select" name="terms" id="terms" value="<%=currentCustomer.getTerms()%>">           
                                     <option class="option">Contado</option>
                                     <option class="option">Crédito</option>
                                 </select>
                                 <h1>Dirección para Facturación</h1>
-                                <textarea class="textarea" id="billTo" name="billTo"></textarea>
+                                <textarea class="textarea" id="billTo" name="billTo" ><%=currentCustomer.getBillTo()%></textarea>
                                 <h1>Dirección de Envío</h1>
-                                <textarea class="textarea" id="shipTo" name="shipTo"></textarea>
+                                <textarea class="textarea" id="shipTo" name="shipTo" ><%=currentCustomer.getShipTo()%></textarea>
                                 <div>
-                                <input class="button form-button-submit" type="submit" value="Ok">
+                                    <input class="button form-button-submit" type="submit" value="Ok">
                                 </div>
                                 <% String error = "";
                                     if (request.getAttribute("errorMessage") != null) {

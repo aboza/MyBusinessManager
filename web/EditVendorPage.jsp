@@ -4,6 +4,7 @@
     Author     : AlexisDev
 --%>
 
+<%@page import="Beans.Vendor"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -98,30 +99,31 @@
                             <header>
                                 <h2>Proveedor</h2>  
                             </header>
+                            <%Vendor currentVendor = (Vendor) request.getAttribute("currentVendor");%>
                             <form method="post" action="">
                                 <h1>Nombre</h1>
-                                <input class="longtext" name="vendorName" id="vendorName">
+                                <input class="longtext" name="vendorName" id="vendorName" value="<%=currentVendor.getName()%>">
                                 <h1>Compañia</h1>
-                                <input class="longtext" name="companyName" id="companyName">
+                                <input class="longtext" name="companyName" id="companyName" value="<%=currentVendor.getCompanyName()%>">
                                 <h1>Contacto Directo</h1>
-                                <input class="longtext" name="contact" id="contact">
+                                <input class="longtext" name="contact" id="contact" value="<%=currentVendor.getContact()%>">
                                 <h1>Teléfono</h1>
-                                <input class="longtext" name="phone" id="phone">
+                                <input class="longtext" name="phone" id="phone" value="<%=currentVendor.getPhone()%>">
                                 <h1>Teléfono Alt</h1>
-                                <input class="longtext" name="altphone" id="altphone">
+                                <input class="longtext" name="altphone" id="altphone" value="<%=currentVendor.getAltphone()%>">
                                 <h1>Fax</h1>
-                                <input class="longtext" name="fax" id="fax">
+                                <input class="longtext" name="fax" id="fax" value="<%=currentVendor.getFax()%>">
                                 <h1>Email</h1>
-                                <input class="longtext" name="email" id="email">
+                                <input class="longtext" name="email" id="email" value="<%=currentVendor.getEmail()%>">
                                 <h1>Tipo de Proveedor</h1>
-                                <select class="select" name="vendorType" id="vendorType">           
+                                <select class="select" name="vendorType" id="vendorType" value="<%=currentVendor.getVendorType()%>">           
                                     <option class="option">Bebidas</option>
                                     <option class="option">Granos</option>
                                     <option class="option">Carnes</option>
                                     <option class="option">Frutas y Vegetales</option>
                                 </select>
                                 <h1>Dirección</h1>
-                                <textarea class="textarea" id="description" name="description"></textarea>
+                                <textarea class="textarea" id="address" name="description"><%=currentVendor.getAddress()%></textarea>
                                 <div>
                                 <input class="button form-button-submit" type="submit" value="Ok">
                                 </div>

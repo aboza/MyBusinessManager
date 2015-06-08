@@ -104,7 +104,7 @@
                                 <%ArrayList<Vendor> vendorList = (ArrayList<Vendor>) request.getAttribute("VendorList");%>
                                 <div class="row">
                                     <%for (Vendor actualVendor : vendorList) {%>
-                                    <A href="SingleVendorShowServlet?discId=<%=actualVendor.getId()%>" ><%=actualVendor.getName() + "-" + actualVendor.getCompanyName()%></A>
+                                    <A href="SingleVendorServlet?vendorId=<%=actualVendor.getId()%>" ><%=actualVendor.getName() + "-" + actualVendor.getCompanyName()%></A>
                                     <div class="row"></div>
                                     <%}%>
                                 </div>
