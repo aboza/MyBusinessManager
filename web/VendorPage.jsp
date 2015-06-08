@@ -4,6 +4,8 @@
     Author     : AlexisDev
 --%>
 
+<%@page import="Beans.Vendor"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -99,15 +101,12 @@
                             <header>
                                 <h2>Proveedores</h2>
                                 <h1>Proveedores Activos</h1>
-                                <%-- <%ArrayList<Disc> discList = (ArrayList<Disc>) request.getAttribute("DiscList");%>
-                                 <div class="row">
-                                     <marquee onmouseover=this.stop() onmouseout=this.start() scrollAmount=2 scrollDelay=8 direction=up>
-                                         <%for (Disc actualDisc : discList) {%>
-                                         <A href="SingleDiscShowServlet?discId=<%=actualDisc.getId()%>" ><%=actualDisc.getTitle()%></A>
-                                         <div class="row"></div>
-                                         <%}%>
-                                --%>
-                                </marquee>
+                                <%ArrayList<Vendor> vendorList = (ArrayList<Vendor>) request.getAttribute("VendorList");%>
+                                <div class="row">
+                                    <%for (Vendor actualVendor : vendorList) {%>
+                                    <A href="SingleVendorShowServlet?discId=<%=actualVendor.getId()%>" ><%=actualVendor.getName() + "-" + actualVendor.getCompanyName()%></A>
+                                    <div class="row"></div>
+                                    <%}%>
                                 </div>
                             </header>
 

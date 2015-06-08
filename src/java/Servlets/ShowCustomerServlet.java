@@ -5,8 +5,11 @@
  */
 package Servlets;
 
+import Beans.Customer;
+import DAO.DAOCustomer;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +34,10 @@ public class ShowCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DAOCustomer customerDAO = new DAOCustomer();
+        ArrayList<Customer> customerList;
+        customerList = customerDAO.getAllCustomers();
+        request.setAttribute("CustomerList", customerList);
         request.getRequestDispatcher("CustomerPage.jsp").forward(request, response);
     }
 

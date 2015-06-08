@@ -5,8 +5,13 @@
  */
 package Servlets;
 
+import Beans.Customer;
+import Beans.Vendor;
+import DAO.DAOCustomer;
+import DAO.DAOVendor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +36,10 @@ public class ShowVendorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DAOVendor vendorDAO = new DAOVendor();
+        ArrayList<Vendor> vendorList;
+        vendorList = vendorDAO.getAllVendors();
+        request.setAttribute("VendorList", vendorList);
         request.getRequestDispatcher("VendorPage.jsp").forward(request, response);
      
     }

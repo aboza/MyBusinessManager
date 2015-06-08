@@ -10,6 +10,7 @@ package Beans;
  * @author AlexisDev
  */
 public class Customer {
+    private int id;
     private String name;
     private String companyName;
     private String phone;
@@ -21,6 +22,15 @@ public class Customer {
 
     public Customer() {
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public String getName() {
         return name;
