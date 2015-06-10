@@ -23,9 +23,18 @@ public final class Constants {
             + "PHONE,FAX,EMAIL,BILL_TO,SHIP_TO,TERMS FROM BM_CUSTOMERS";
     public static String ORACLE_GETVENDORS = "SELECT VENDOR_ID,NAME,COMPANY_NAME,CONTACT,"
             + "VENDOR_TYPE,ADDRESS,PHONE,ALT_PHONE,FAX,EMAIL FROM BM_VENDORS";
-     public static String ORACLE_GETCUSTOMER_BY_ID = "SELECT CUSTOMER_ID ,NAME,COMPANY_NAME,"
+    public static String ORACLE_GETCUSTOMER_BY_ID = "SELECT CUSTOMER_ID ,NAME,COMPANY_NAME,"
             + "PHONE,FAX,EMAIL,BILL_TO,SHIP_TO,TERMS FROM BM_CUSTOMERS WHERE CUSTOMER_ID = ?";
-     public static String ORACLE_GETVENDOR_BY_ID = "SELECT VENDOR_ID,NAME,COMPANY_NAME,CONTACT,"
+    public static String ORACLE_GETVENDOR_BY_ID = "SELECT VENDOR_ID,NAME,COMPANY_NAME,CONTACT,"
             + "VENDOR_TYPE,ADDRESS,PHONE,ALT_PHONE,FAX,EMAIL FROM BM_VENDORS WHERE VENDOR_ID = ?";
+
+    //procedures calls
+    public static String ORACLE_UPDATE_VENDOR = "CALL UPDATE_Vendor(?,?,?,?,?,?,?,?,?,?)";
+    public static String ORACLE_CREATE_VENDOR = "CALL CREATE_Vendor(?,?,?,?,?,?,?,?,?)";
+    public static String ORACLE_DELETE_VENDOR = "CALL DELETE_Vendor(?)";
+
+    public static String ORACLE_UPDATE_CUSTOMER = "CALL UPDATE_Customer(?,?,?,?,?,?,?,?,?)";
+    public static String ORACLE_CREATE_CUSTOMER = "CALL CREATE_Customer(?,?,?,?,?,?,?,?)";
+    public static String ORACLE_DELETE_CUSTOMER = "CALL DELETE_Customer(?)";
 
 }

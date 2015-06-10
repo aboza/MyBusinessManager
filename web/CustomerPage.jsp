@@ -100,6 +100,7 @@
                         <article id="main">
                             <header>
                                 <h2>Clientes</h2>
+                                <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
                                 <h1>Clientes Activos</h1>
                                 <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
                                 <div class="row">

@@ -32,6 +32,14 @@
         <servlet-name>SingleVendorServlet</servlet-name>
         <servlet-class>Servlets.SingleVendorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateVendorServlet</servlet-name>
+        <servlet-class>Servlets.CreateVendorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <servlet-class>Servlets.CreateCustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>SingleVendorServlet</servlet-name>
         <url-pattern>/SingleVendorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateVendorServlet</servlet-name>
+        <url-pattern>/CreateVendorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <url-pattern>/CreateCustomerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

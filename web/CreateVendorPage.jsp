@@ -1,11 +1,9 @@
 <%-- 
-    Document   : VendorPage
-    Created on : 04/06/2015, 10:18:31 PM
+    Document   : CreateVendorPage
+    Created on : 09/06/2015, 07:48:59 PM
     Author     : AlexisDev
 --%>
 
-<%@page import="Beans.Vendor"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -62,7 +60,7 @@
                             </p>
                             <a href="" class="button">Inventario</a>
                             <header>
-                                <h3><a href="">Proveedores</a></h3>
+                                <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
                             <p>
                                 Mante siempre a tus proveedores cerca, nunca
@@ -92,24 +90,48 @@
                                 a MyBusinessManeger
                             </p>
                             <a href="" class="button">Seguridad</a>
-
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h2>Proveedores</h2>
-                                <a href="CreateVendorServlet" class="button">Nuevo Proveedor</a>
-                                <h1>Proveedores Activos</h1>
-                                <%ArrayList<Vendor> vendorList = (ArrayList<Vendor>) request.getAttribute("VendorList");%>
-                                <div class="row">
-                                    <%for (Vendor actualVendor : vendorList) {%>
-                                    <A href="SingleVendorServlet?vendorId=<%=actualVendor.getId()%>" ><%=actualVendor.getName() + "-" + actualVendor.getCompanyName()%></A>
-                                    <div class="row"></div>
-                                    <%}%>
-                                </div>
+                                <h2>Proveedor</h2>  
                             </header>
+                            <form method="post" action="CreateVendorServlet">    
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                <h1>Nombre</h1>
+                                <input class="longtext" name="vendorName" id="vendorName" >
+                                <h1>Compañia</h1>
+                                <input class="longtext" name="companyName" id="companyName" >
+                                <h1>Contacto Directo</h1>
+                                <input class="longtext" name="contact" id="contact" >
+                                <h1>Teléfono</h1>
+                                <input class="longtext" name="phone" id="phone" >
+                                <h1>Teléfono Alt</h1>
+                                <input class="longtext" name="altphone" id="altphone" >
+                                <h1>Fax</h1>
+                                <input class="longtext" name="fax" id="fax" >
+                                <h1>Email</h1>
+                                <input class="longtext" name="email" id="email" >
+                                <h1>Tipo de Proveedor</h1>
+                                <select class="select" name="vendorType" id="vendorType" >           
+                                    <option class="option">Bebidas</option>
+                                    <option class="option">Granos</option>
+                                    <option class="option">Carnes</option>
+                                    <option class="option">Frutas y Vegetales</option>
+                                </select>
+                                <h1>Dirección</h1>
+                                <textarea class="textarea" id="address" name="address"></textarea>
+                                <div>
+                                    <input class="button form-button-submit" type="submit" value="Ok" name="Create">
+                                </div>
+                            </form>
 
                         </article>
                     </div>
@@ -141,3 +163,4 @@
         </div>
     </body>
 </html>
+

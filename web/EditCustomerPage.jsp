@@ -100,8 +100,15 @@
                             <header>
                                 <h2>Cliente</h2>  
                             </header>
-                            <%Customer currentCustomer = (Customer) request.getAttribute("currentCustomer");%>
-                            <form method="post" action="">
+                            <%Customer currentCustomer = (Customer) session.getAttribute("currentCustomer");
+                                session.setAttribute("customerId", currentCustomer.getId());%>
+                            <form method="post" action="EditCustomerServlet">
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
                                 <h1>Nombre</h1>
                                 <input class="longtext" name="customerName" id="customerName" value="<%=currentCustomer.getName()%>">
                                 <h1>Compañia</h1>
@@ -122,14 +129,9 @@
                                 <h1>Dirección de Envío</h1>
                                 <textarea class="textarea" id="shipTo" name="shipTo" ><%=currentCustomer.getShipTo()%></textarea>
                                 <div>
-                                    <input class="button form-button-submit" type="submit" value="Ok">
+                                    <input class="button form-button-submit" type="submit" value="Ok" name="Update">
+                                    <input class="button form-button-submit" type="submit" value="Delete" name="Delete">
                                 </div>
-                                <% String error = "";
-                                    if (request.getAttribute("errorMessage") != null) {
-                                        error = request.getAttribute("errorMessage").toString();
-                                    }
-                                %>
-                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
                             </form>
                         </article>
                     </div>

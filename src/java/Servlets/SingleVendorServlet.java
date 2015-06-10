@@ -5,12 +5,9 @@
  */
 package Servlets;
 
-import Beans.Customer;
 import Beans.Vendor;
-import DAO.DAOCustomer;
 import DAO.DAOVendor;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +35,7 @@ public class SingleVendorServlet extends HttpServlet {
         vendorId = Integer.parseInt(request.getParameter("vendorId"));
         DAOVendor vendorDAO = new DAOVendor();
         Vendor vendorBean = vendorDAO.getSingleVendorById(vendorId);
-        request.setAttribute("currentVendor", vendorBean);
+        request.getSession().setAttribute("currentVendor", vendorBean);
         request.getRequestDispatcher("EditVendorPage.jsp").forward(request, response);
 
     }

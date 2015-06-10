@@ -8,7 +8,6 @@ package Servlets;
 import Beans.Customer;
 import DAO.DAOCustomer;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +34,7 @@ public class SingleCustomerServlet extends HttpServlet {
             customerId = Integer.parseInt(request.getParameter("customerId"));
             DAOCustomer customerDAO = new DAOCustomer();
             Customer customerBean = customerDAO.getSingleCustomerById(customerId);
-            request.setAttribute("currentCustomer", customerBean);
+            request.getSession().setAttribute("currentCustomer", customerBean);
             request.getRequestDispatcher("EditCustomerPage.jsp").forward(request, response);
     }
 

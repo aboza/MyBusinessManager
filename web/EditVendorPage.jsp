@@ -99,8 +99,15 @@
                             <header>
                                 <h2>Proveedor</h2>  
                             </header>
-                            <%Vendor currentVendor = (Vendor) request.getAttribute("currentVendor");%>
-                            <form method="post" action="">
+                            <%Vendor currentVendor = (Vendor) session.getAttribute("currentVendor");
+                                session.setAttribute("vendorId", currentVendor.getId());%>
+                            <form method="post" action="EditVendorServlet">    
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
                                 <h1>Nombre</h1>
                                 <input class="longtext" name="vendorName" id="vendorName" value="<%=currentVendor.getName()%>">
                                 <h1>Compañia</h1>
@@ -123,17 +130,13 @@
                                     <option class="option">Frutas y Vegetales</option>
                                 </select>
                                 <h1>Dirección</h1>
-                                <textarea class="textarea" id="address" name="description"><%=currentVendor.getAddress()%></textarea>
+                                <textarea class="textarea" id="address" name="address"><%=currentVendor.getAddress()%></textarea>
                                 <div>
-                                <input class="button form-button-submit" type="submit" value="Ok">
+                                    <input class="button form-button-submit" type="submit" value="Ok" name="Update">
+                                    <input class="button form-button-submit" type="submit" value="Delete" name="Delete">
                                 </div>
-                                <% String error = "";
-                                    if (request.getAttribute("errorMessage") != null) {
-                                        error = request.getAttribute("errorMessage").toString();
-                                    }
-                                %>
-                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
                             </form>
+
                         </article>
                     </div>
                 </div>

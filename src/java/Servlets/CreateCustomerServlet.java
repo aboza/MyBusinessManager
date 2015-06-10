@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AlexisDev
  */
-public class EditCustomerServlet extends HttpServlet {
+public class CreateCustomerServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -32,7 +32,7 @@ public class EditCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("EditCustomerPage.jsp");
+        response.sendRedirect("CreateCustomerPage.jsp");
     }
 
     /**
@@ -50,43 +50,36 @@ public class EditCustomerServlet extends HttpServlet {
         RequestDispatcher requestDispatcher;
         //Recuperamos todos los parametros de nuestro JSP
         int id = (int) request.getSession().getAttribute("customerId");//lo obtenemos de las variables de session
-        if (request.getParameter("Update") != null) {
-            String customerName = request.getParameter("customerName");
-            String companyName = request.getParameter("companyName");
-            String phone = request.getParameter("phone");
-            String fax = request.getParameter("fax");
-            String email = request.getParameter("email");
-            String billTo = request.getParameter("billTo");
-            String shipTo = request.getParameter("shipTo");
-            String terms = request.getParameter("terms");
+        String customerName = request.getParameter("customerName");
+        String companyName = request.getParameter("companyName");
+        String phone = request.getParameter("phone");
+        String fax = request.getParameter("fax");
+        String email = request.getParameter("email");
+        String billTo = request.getParameter("billTo");
+        String shipTo = request.getParameter("shipTo");
+        String terms = request.getParameter("terms");
 
-            if (customerName.isEmpty()) {
-                request.setAttribute("errorMessage", "*El campo 'Nombre' es obligatorio para continuar");
-                requestDispatcher = request.getRequestDispatcher("EditCustomerPage.jsp");
-                requestDispatcher.forward(request, response);
+        if (customerName.isEmpty()) {
+            request.setAttribute("errorMessage", "*El campo 'Nombre' es obligatorio para continuar");
+            requestDispatcher = request.getRequestDispatcher("CreateCustomerPage.jsp");
+            requestDispatcher.forward(request, response);
+        } else {
+            //Intanciamos los objetos necesarios
+            Customer CreateCustomer = new Customer();
+            //asignamos los atributos
+            CreateCustomer.setId(id);
+            CreateCustomer.setName(customerName);
+            CreateCustomer.setCompanyName(companyName);
+            CreateCustomer.setPhone(phone);
+            CreateCustomer.setFax(fax);
+            CreateCustomer.setEmail(email);
+            CreateCustomer.setBillTo(billTo);
+            CreateCustomer.setShipTo(shipTo);
+            CreateCustomer.setTerms(terms);
 
-            } else {
-                //Intanciamos los objetos necesarios
-                Customer EditedCustomer = new Customer();
-                //asignamos los atributos
-                EditedCustomer.setId(id);
-                EditedCustomer.setName(customerName);
-                EditedCustomer.setCompanyName(companyName);
-                EditedCustomer.setPhone(phone);
-                EditedCustomer.setFax(fax);
-                EditedCustomer.setEmail(email);
-                EditedCustomer.setBillTo(billTo);
-                EditedCustomer.setShipTo(shipTo);
-                EditedCustomer.setTerms(terms);
-
-                //Nos encargamos de la actualizacion
-                DAOCustomer customerDAO = new DAOCustomer();
-                customerDAO.updateCustomer(EditedCustomer);
-                response.sendRedirect("/MyBussinesManager/ShowCustomerServlet");
-            }
-        } else if (request.getParameter("Delete") != null) {
+            //Nos encargamos de la creacion
             DAOCustomer customerDAO = new DAOCustomer();
-            customerDAO.deleteCustomer(id);
+            customerDAO.createCustomer(CreateCustomer);
             response.sendRedirect("/MyBussinesManager/ShowCustomerServlet");
 
         }

@@ -1,0 +1,158 @@
+CREATE OR REPLACE PROCEDURE UPDATE_Vendor(
+pVendorID IN NUMBER,
+pVendorName IN VARCHAR2,
+pCompanyName IN VARCHAR2,
+pContact IN VARCHAR2,
+pPhone IN VARCHAR2,
+pAlt_Phone IN VARCHAR2,
+pFax IN VARCHAR2,
+pEmail IN VARCHAR2,
+pVendorType IN VARCHAR2,
+pAddress IN VARCHAR2)
+IS
+BEGIN
+
+SAVEPOINT MY_SAVEPOINT;
+
+BEGIN
+  UPDATE BM_VENDORS SET
+  name = pVendorName,
+  company_name = pCompanyName,
+  contact = pcontact,
+  phone = pphone,
+  alt_phone=palt_phone,
+  fax = pfax,
+  email = pemail,
+  vendor_type = pvendortype,
+  address = paddress
+  WHERE vendor_id = pVendorID;
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+END;
+COMMIT;
+END;
+
+
+
+CREATE OR REPLACE PROCEDURE DELETE_Vendor(pVendorID IN NUMBER)
+IS
+BEGIN
+
+SAVEPOINT MY_SAVEPOINT;
+
+BEGIN
+DELETE BM_VENDORS
+WHERE vendor_id = pVendorID;
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+END;
+COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE CREATE_Vendor(
+pVendorName IN VARCHAR2,
+pCompanyName IN VARCHAR2,
+pContact IN VARCHAR2,
+pPhone IN VARCHAR2,
+pAlt_Phone IN VARCHAR2,
+pFax IN VARCHAR2,
+pEmail IN VARCHAR2,
+pVendorType IN VARCHAR2,
+pAddress IN VARCHAR2)
+IS
+BEGIN
+
+SAVEPOINT MY_SAVEPOINT;
+
+BEGIN
+  INSERT INTO BM_VENDORS(name,company_name,contact,vendor_type,address,phone,alt_phone,
+                        fax,email)
+        VALUES(pVendorName,pCompanyName,pContact,pVendorType,pAddress,pPhone,pAlt_Phone,
+              pFax,pEmail);
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+END;
+COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE UPDATE_Customer(
+pCustomerID IN NUMBER,
+pCustomerName IN VARCHAR2,
+pCompanyName IN VARCHAR2,
+pPhone IN VARCHAR2,
+pFax IN VARCHAR2,
+pEmail IN VARCHAR2,
+pBillTo IN VARCHAR2,
+pShipTo IN VARCHAR2,
+pTerms IN VARCHAR2)
+IS
+BEGIN
+
+SAVEPOINT MY_SAVEPOINT;
+
+BEGIN
+  UPDATE BM_CUSTOMERS SET
+  name = pcustomername,
+  company_name = pCompanyName,
+  phone = pphone,
+  fax = pfax,
+  email = pemail,
+  bill_to = pbillto,
+  ship_to = pshipto,
+  terms = pterms
+  WHERE customer_id = pcustomerid;
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+END;
+COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE DELETE_Customer(pCustomerId IN NUMBER)
+IS
+BEGIN
+
+SAVEPOINT MY_SAVEPOINT;
+
+BEGIN
+DELETE BM_CUSTOMERS
+WHERE customer_id = pcustomerid;
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+END;
+COMMIT;
+END;
+
+CREATE OR REPLACE PROCEDURE CREATE_Customer(
+pCustomerName IN VARCHAR2,
+pCompanyName IN VARCHAR2,
+pPhone IN VARCHAR2,
+pFax IN VARCHAR2,
+pEmail IN VARCHAR2,
+pBillTo IN VARCHAR2,
+pShipTo IN VARCHAR2,
+pTerms IN VARCHAR2)
+IS
+BEGIN
+
+SAVEPOINT MY_SAVEPOINT;
+
+BEGIN
+  INSERT INTO BM_CUSTOMERS(name,company_name,phone,fax,email,bill_to,ship_to,terms)
+        VALUES(pCustomerName,pCompanyName,pPhone,pFax,pEmail,pbillto,pshipto,pterms);
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+END;
+COMMIT;
+END;

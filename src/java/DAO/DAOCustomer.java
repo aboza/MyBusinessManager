@@ -6,6 +6,7 @@
 package DAO;
 
 import Beans.Customer;
+import Beans.Vendor;
 import JDBC.OracleConnectionFactory;
 import Utils.Constants;
 import java.sql.PreparedStatement;
@@ -74,6 +75,61 @@ public class DAOCustomer {
         }
 
     }
+     
+     public void updateCustomer(Customer vCustomer) {
+        try {
+            OracleConnectionFactory connection = new OracleConnectionFactory();
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_UPDATE_CUSTOMER);
+            //Colocamos los parametros de la consulta
+            statement.setInt(1, vCustomer.getId());
+            statement.setString(2, vCustomer.getName());
+            statement.setString(3, vCustomer.getCompanyName());
+            statement.setString(4, vCustomer.getPhone());
+            statement.setString(5, vCustomer.getFax());
+            statement.setString(6, vCustomer.getEmail());
+            statement.setString(7, vCustomer.getBillTo());
+            statement.setString(8, vCustomer.getShipTo());
+            statement.setString(9, vCustomer.getTerms());
+            //ejecutamos la consulta
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOVendor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void deleteCustomer(int customerId) {
+        try {
+            OracleConnectionFactory connection = new OracleConnectionFactory();
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_DELETE_CUSTOMER);
+            statement.setInt(1, customerId);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOVendor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void createCustomer(Customer vCustomer) {
+        try {
+            OracleConnectionFactory connection = new OracleConnectionFactory();
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_CREATE_CUSTOMER);
+            //Colocamos los parametros de la consulta
+            statement.setString(1, vCustomer.getName());
+            statement.setString(2, vCustomer.getCompanyName());
+            statement.setString(3, vCustomer.getPhone());
+            statement.setString(4, vCustomer.getFax());
+            statement.setString(5, vCustomer.getEmail());
+            statement.setString(6, vCustomer.getBillTo());
+            statement.setString(7, vCustomer.getShipTo());
+            statement.setString(8, vCustomer.getTerms());
+            //ejecutamos la consulta
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOVendor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 
     
 }
