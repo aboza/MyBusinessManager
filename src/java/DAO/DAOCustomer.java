@@ -6,7 +6,6 @@
 package DAO;
 
 import Beans.Customer;
-import Beans.Vendor;
 import JDBC.OracleConnectionFactory;
 import Utils.Constants;
 import java.sql.PreparedStatement;
@@ -26,7 +25,7 @@ public class DAOCustomer {
         try {
             ArrayList<Customer> resultList = new ArrayList<>();
             OracleConnectionFactory connection = new OracleConnectionFactory();
-            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GETCUSTOMERS);
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GET_ALL_CUSTOMERS);
             ResultSet var_resultSet = statement.executeQuery();
             while (var_resultSet.next()) {
                 Customer actualCustomer;
@@ -53,7 +52,7 @@ public class DAOCustomer {
         try {
             Customer customerBean = null;
             OracleConnectionFactory connection = new OracleConnectionFactory();
-            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GETCUSTOMER_BY_ID);
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GET_CUSTOMER_BY_ID);
             statement.setInt(1, customerId);
             ResultSet var_resultSet = statement.executeQuery();
             while (var_resultSet.next()) {

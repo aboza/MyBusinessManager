@@ -5,10 +5,9 @@
  */
 package Servlets;
 
-import Beans.Customer;
-import DAO.DAOCustomer;
+import DAO.DAORole;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,27 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AlexisDev
  */
-public class SingleCustomerServlet extends HttpServlet {
+public class EditRoleServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int customerId;
-        customerId = Integer.parseInt(request.getParameter("customerId"));
-        DAOCustomer customerDAO = new DAOCustomer();
-        Customer customerBean = customerDAO.getSingleCustomerById(customerId);
-        request.getSession().setAttribute("currentCustomer", customerBean);
-        request.getRequestDispatcher("EditCustomerPage.jsp").forward(request, response);
-    }
-
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -50,8 +31,7 @@ public class SingleCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-
+        response.sendRedirect("EditRolePage.jsp");
     }
 
     /**
@@ -65,7 +45,19 @@ public class SingleCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //Declaro e inicio las variables
+        RequestDispatcher requestDispatcher;
+        //Recuperamos todos los parametros de nuestro JSP
+        int id = (int) request.getSession().getAttribute("roleId");//lo obtenemos de las variables de session
+        if (request.getParameter("Update") != null) {
+            //null by now
+            response.sendRedirect("/MyBussinesManager/ShowRoleServlet");
+        }else if (request.getParameter("Delete") != null){
+            DAORole roleDAO = new DAORole();
+            roleDAO.deleteRole(id);
+            response.sendRedirect("/MyBussinesManager/ShowRoleServlet");
+
+        }
 
     }
 
@@ -77,6 +69,6 @@ public class SingleCustomerServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

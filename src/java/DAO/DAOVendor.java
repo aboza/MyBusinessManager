@@ -25,7 +25,7 @@ public class DAOVendor {
         try {
             ArrayList<Vendor> resultList = new ArrayList<>();
             OracleConnectionFactory connection = new OracleConnectionFactory();
-            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GETVENDORS);
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GET_ALL_VENDORS);
             ResultSet var_resultSet = statement.executeQuery();
             while (var_resultSet.next()) {
                 Vendor actualVendor;
@@ -52,7 +52,7 @@ public class DAOVendor {
         try {
             Vendor vendorBean = null;
             OracleConnectionFactory connection = new OracleConnectionFactory();
-            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GETVENDOR_BY_ID);
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_GET_VENDOR_BY_ID);
             statement.setInt(1, vendorId);
             ResultSet var_resultSet = statement.executeQuery();
             while (var_resultSet.next()) {

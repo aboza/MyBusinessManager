@@ -19,14 +19,19 @@ public final class Constants {
 
     //queries
     //Oracle al parecer no puede hacer Procedures de SELECT -_-
-    public static String ORACLE_GETCUSTOMERS = "SELECT CUSTOMER_ID ,NAME,COMPANY_NAME,"
+    public static String ORACLE_GET_ALL_CUSTOMERS = "SELECT CUSTOMER_ID ,NAME,COMPANY_NAME,"
             + "PHONE,FAX,EMAIL,BILL_TO,SHIP_TO,TERMS FROM BM_CUSTOMERS";
-    public static String ORACLE_GETVENDORS = "SELECT VENDOR_ID,NAME,COMPANY_NAME,CONTACT,"
+    public static String ORACLE_GET_ALL_VENDORS = "SELECT VENDOR_ID,NAME,COMPANY_NAME,CONTACT,"
             + "VENDOR_TYPE,ADDRESS,PHONE,ALT_PHONE,FAX,EMAIL FROM BM_VENDORS";
-    public static String ORACLE_GETCUSTOMER_BY_ID = "SELECT CUSTOMER_ID ,NAME,COMPANY_NAME,"
+    public static String ORACLE_GET_CUSTOMER_BY_ID = "SELECT CUSTOMER_ID ,NAME,COMPANY_NAME,"
             + "PHONE,FAX,EMAIL,BILL_TO,SHIP_TO,TERMS FROM BM_CUSTOMERS WHERE CUSTOMER_ID = ?";
-    public static String ORACLE_GETVENDOR_BY_ID = "SELECT VENDOR_ID,NAME,COMPANY_NAME,CONTACT,"
+    public static String ORACLE_GET_VENDOR_BY_ID = "SELECT VENDOR_ID,NAME,COMPANY_NAME,CONTACT,"
             + "VENDOR_TYPE,ADDRESS,PHONE,ALT_PHONE,FAX,EMAIL FROM BM_VENDORS WHERE VENDOR_ID = ?";
+    public static String ORACLE_GET_ROLES = "SELECT ROLE_ID ,NAME FROM BM_ROLES";
+    public static String ORACLE_GET_ROLE_BY_ID = "SELECT ROLE_ID ,NAME FROM BM_ROLES WHERE ROLE_ID = ?";
+    public static String ORACLE_GET_PERMISSIONS = "SELECT P.PERMISSION_ID,P.CODE,P.DESCRIPTION FROM BM_PERMISSIONS P"
+            + " INNER JOIN BM_PERMISSIONSXROLE PXR ON PXR.PERMISSION_ID = P.PERMISSION_ID"
+            + " WHERE PXR.ROLE_ID = ?";
 
     //procedures calls
     public static String ORACLE_UPDATE_VENDOR = "CALL UPDATE_Vendor(?,?,?,?,?,?,?,?,?,?)";
@@ -36,5 +41,7 @@ public final class Constants {
     public static String ORACLE_UPDATE_CUSTOMER = "CALL UPDATE_Customer(?,?,?,?,?,?,?,?,?)";
     public static String ORACLE_CREATE_CUSTOMER = "CALL CREATE_Customer(?,?,?,?,?,?,?,?)";
     public static String ORACLE_DELETE_CUSTOMER = "CALL DELETE_Customer(?)";
+    
+    public static String ORACLE_DELETE_ROLE = "CALL DELETE_Role(?)";
 
 }

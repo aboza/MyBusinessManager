@@ -1,9 +1,11 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
+    Document   : RolesPage
+    Created on : 09/06/2015, 09:02:51 PM
     Author     : AlexisDev
 --%>
 
+<%@page import="Beans.Role"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -89,14 +91,25 @@
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
+                            <a href="" class="button">Seguridad</a>
 
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
+                            <header>
+                                <h2>Roles</h2>
+                                <a href="CreateCustomerServlet" class="button">Nuevo Rol</a>
+                                <h1>Roles Activos</h1>
+                                <%ArrayList<Role> roleList = (ArrayList<Role>) request.getAttribute("RoleList");%>
+                                <div class="row">
+                                    <%for (Role actualRole : roleList) {%>
+                                    <A href="SingleRoleServlet?roleId=<%=actualRole.getId()%>" ><%=actualRole.getName()%></A>
+                                    <div class="row"></div>
+                                    <%}%>
+                                </div>
+                            </header>
 
                         </article>
                     </div>
@@ -128,3 +141,5 @@
         </div>
     </body>
 </html>
+
+

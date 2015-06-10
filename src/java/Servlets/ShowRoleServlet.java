@@ -5,10 +5,10 @@
  */
 package Servlets;
 
-import Beans.Customer;
-import DAO.DAOCustomer;
+import Beans.Role;
+import DAO.DAORole;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AlexisDev
  */
-public class SingleCustomerServlet extends HttpServlet {
+public class ShowRoleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +31,14 @@ public class SingleCustomerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int customerId;
-        customerId = Integer.parseInt(request.getParameter("customerId"));
-        DAOCustomer customerDAO = new DAOCustomer();
-        Customer customerBean = customerDAO.getSingleCustomerById(customerId);
-        request.getSession().setAttribute("currentCustomer", customerBean);
-        request.getRequestDispatcher("EditCustomerPage.jsp").forward(request, response);
+        DAORole roleDAO = new DAORole();
+        ArrayList<Role> roleList;
+        roleList = roleDAO.getAllRoles();
+        request.setAttribute("RoleList", roleList);
+        request.getRequestDispatcher("RolesPage.jsp").forward(request, response);
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -51,7 +51,6 @@ public class SingleCustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**
@@ -66,7 +65,6 @@ public class SingleCustomerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**
@@ -77,6 +75,6 @@ public class SingleCustomerServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

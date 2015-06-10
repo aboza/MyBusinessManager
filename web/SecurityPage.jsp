@@ -1,6 +1,6 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
+    Document   : SecurityPage
+    Created on : 09/06/2015, 08:59:04 PM
     Author     : AlexisDev
 --%>
 
@@ -90,14 +90,27 @@
                                 a MyBusinessManeger
                             </p>
                             <a href="SecurityPage.jsp" class="button">Seguridad</a>
-
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
-
+                            <header>
+                                <h3><a href="">Roles</a></h3>
+                            </header>
+                            <p>
+                                Define Roles para tus usuarios y decide
+                                a que opciones podrán tener acceso
+                            </p>
+                            <a href="ShowRoleServlet" class="button">Roles</a>
+                            <header>
+                                <h3><a href="">Usuarios</a></h3>
+                            </header>
+                            <p>
+                                Define Usuarios para que puedan tener
+                                acceso al sistema
+                            </p>
+                            <a href="" class="button">Usuarios</a>
                         </article>
                     </div>
                 </div>

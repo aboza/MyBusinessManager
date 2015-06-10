@@ -21,6 +21,23 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ShowCustomerServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        DAOCustomer customerDAO = new DAOCustomer();
+        ArrayList<Customer> customerList;
+        customerList = customerDAO.getAllCustomers();
+        request.setAttribute("CustomerList", customerList);
+        request.getRequestDispatcher("CustomerPage.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -34,11 +51,7 @@ public class ShowCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DAOCustomer customerDAO = new DAOCustomer();
-        ArrayList<Customer> customerList;
-        customerList = customerDAO.getAllCustomers();
-        request.setAttribute("CustomerList", customerList);
-        request.getRequestDispatcher("CustomerPage.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -52,7 +65,8 @@ public class ShowCustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
+
     }
 
     /**

@@ -40,6 +40,18 @@
         <servlet-name>CreateCustomerServlet</servlet-name>
         <servlet-class>Servlets.CreateCustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowRoleServlet</servlet-name>
+        <servlet-class>Servlets.ShowRoleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingleRoleServlet</servlet-name>
+        <servlet-class>Servlets.SingleRoleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditRoleServlet</servlet-name>
+        <servlet-class>Servlets.EditRoleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -79,6 +91,18 @@
     <servlet-mapping>
         <servlet-name>CreateCustomerServlet</servlet-name>
         <url-pattern>/CreateCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowRoleServlet</servlet-name>
+        <url-pattern>/ShowRoleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingleRoleServlet</servlet-name>
+        <url-pattern>/SingleRoleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditRoleServlet</servlet-name>
+        <url-pattern>/EditRoleServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

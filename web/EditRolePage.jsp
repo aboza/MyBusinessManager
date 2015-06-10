@@ -1,9 +1,11 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
+    Document   : EditRolePage
+    Created on : 09/06/2015, 10:14:02 PM
     Author     : AlexisDev
 --%>
 
+<%@page import="Beans.Permission"%>
+<%@page import="Beans.Role"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -60,7 +62,7 @@
                             </p>
                             <a href="" class="button">Inventario</a>
                             <header>
-                                <h3><a href="">Proveedores</a></h3>
+                                <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
                             <p>
                                 Mante siempre a tus proveedores cerca, nunca
@@ -89,14 +91,40 @@
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
-
+                            <a href="" class="button">Seguridad</a>
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
+                            <header>
+                                <h2>Proveedor</h2>  
+                            </header>
+                            <%Role currentRole = (Role) session.getAttribute("currentRole");
+                                session.setAttribute("roleId", currentRole.getId());%>
+                            <form method="post" action="EditRoleServlet">    
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                <h1>Nombre</h1>
+                                <input class="longtext" name="roleName" id="roleName" value="<%=currentRole.getName()%>">
+                                <p>Permisos</p>
+                                <table>
+                                    <th>Descripcion</th>
+                                        <%for (Permission permission : currentRole.getPermisssions()) {%><%--INICIO DEL FOR--%>
+                                    <tr>
+                                        <td><%=permission.getDescription()%></td>
+                                    </tr>
+                                    <% }%><%--FIN DEL FOR--%>
+                                </table>
+                                <div>
+                                    <input class="button form-button-submit" type="submit" value="Ok" name="Update">
+                                    <input class="button form-button-submit" type="submit" value="Delete" name="Delete">
+                                </div>
+                            </form>
 
                         </article>
                     </div>
@@ -128,3 +156,4 @@
         </div>
     </body>
 </html>
+
