@@ -1,9 +1,12 @@
 <%-- 
-    Document   : SecurityPage
-    Created on : 09/06/2015, 08:59:04 PM
+    Document   : EditUserPage
+    Created on : 11/06/2015, 07:22:28 PM
     Author     : AlexisDev
 --%>
 
+<%@page import="Beans.Role"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Beans.User"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -60,7 +63,7 @@
                             </p>
                             <a href="" class="button">Inventario</a>
                             <header>
-                                <h3><a href="">Proveedores</a></h3>
+                                <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
                             <p>
                                 Mante siempre a tus proveedores cerca, nunca
@@ -89,28 +92,42 @@
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
+                            <a href="" class="button">Seguridad</a>
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h3><a href="">Roles</a></h3>
+                                <h2>Usuario</h2>  
                             </header>
-                            <p>
-                                Define Roles para tus usuarios y decide
-                                a que opciones podrán tener acceso
-                            </p>
-                            <a href="ShowRoleServlet" class="button">Roles</a>
-                            <header>
-                                <h3><a href="">Usuarios</a></h3>
-                            </header>
-                            <p>
-                                Define Usuarios para que puedan tener
-                                acceso al sistema
-                            </p>
-                            <a href="ShowUserServlet" class="button">Usuarios</a>
+                            <%User currentUser = (User) session.getAttribute("currentUser");
+                                session.setAttribute("userId", currentUser.getId());%>
+                            <form method="post" action="EditUserServlet">
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                <h1>Usuario</h1>
+                                <input class="longtext" name="username" id="username" value="<%=currentUser.getUserName()%>">
+                                <h1>Password</h1>
+                                <input class="longtext" type="password" name="password" id="password">
+                                <h1>Confirmar Password</h1>
+                                <input class="longtext" type="password" name="password2" id="password2">
+                                <h1>Rol</h1>
+                                <%ArrayList<Role> roleList = (ArrayList<Role>) session.getAttribute("RoleList");%>                             
+                                <select class="select" name="roleId" id="roleId">
+                                    <%for (Role actualRole : roleList) {%><%--INICIO DEL FOR--%>
+                                    <option class="option" value="<%=actualRole.getId()%>"><%=actualRole.getName()%></option>
+                                    <%}%><%--FIN DEL FOR--%>
+                                </select>
+                                <div>
+                                    <input class="button form-button-submit" type="submit" value="Ok" name="Update">
+                                    <input class="button form-button-submit" type="submit" value="Delete" name="Delete">
+                                </div>
+                            </form>
                         </article>
                     </div>
                 </div>

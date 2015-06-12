@@ -1,9 +1,12 @@
 <%-- 
-    Document   : SecurityPage
-    Created on : 09/06/2015, 08:59:04 PM
+    Document   : UserPage
+    Created on : 11/06/2015, 06:39:39 PM
     Author     : AlexisDev
 --%>
 
+<%@page import="Beans.User"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -89,28 +92,26 @@
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
+                            <a href="" class="button">Seguridad</a>
+
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h3><a href="">Roles</a></h3>
+                                <h2>Usuarios</h2>
+                                <a href="CreateUserServlet" class="button">Nuevo Usuario</a>
+                                <h1>Usuarios Activos</h1>
+                                <%ArrayList<User> userList = (ArrayList<User>) request.getAttribute("UserList");%>
+                                <div class="row">
+                                    <%for (User actualUser : userList) {%>
+                                    <A href="SingleUserServlet?userId=<%=actualUser.getId()%>" ><%=actualUser.getUserName()%></A>
+                                    <div class="row"></div>
+                                    <%}%>
+                                </div>
                             </header>
-                            <p>
-                                Define Roles para tus usuarios y decide
-                                a que opciones podrán tener acceso
-                            </p>
-                            <a href="ShowRoleServlet" class="button">Roles</a>
-                            <header>
-                                <h3><a href="">Usuarios</a></h3>
-                            </header>
-                            <p>
-                                Define Usuarios para que puedan tener
-                                acceso al sistema
-                            </p>
-                            <a href="ShowUserServlet" class="button">Usuarios</a>
+
                         </article>
                     </div>
                 </div>
@@ -141,3 +142,4 @@
         </div>
     </body>
 </html>
+

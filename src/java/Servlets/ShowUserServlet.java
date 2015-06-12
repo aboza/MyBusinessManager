@@ -6,27 +6,40 @@
 package Servlets;
 
 import Beans.User;
+import Beans.Vendor;
 import DAO.DAOUser;
-import JDBC.OracleConnectionFactory;
+import DAO.DAOVendor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author AlexisDev
  */
-public class LogInServlet extends HttpServlet {
+public class ShowUserServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        DAOUser userDAO = new DAOUser();
+        ArrayList<User> userList;
+        userList = userDAO.getAllUsers();
+        request.setAttribute("UserList", userList);
+        request.getRequestDispatcher("UserPage.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -40,11 +53,7 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /* En este proyecto; este servlet no recibe ni debe recibir nada por GET, 
-         * asi que si se lleva a entrar al servelt
-         * usando el metodo GET solamente redireccion al index.jsp
-         */
-        response.sendRedirect("index.jsp");
+        processRequest(request, response);
     }
 
     /**
@@ -58,24 +67,7 @@ public class LogInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-try {
-            RequestDispatcher requestDispatcher;
-            requestDispatcher = request.getRequestDispatcher("index.jsp");
-            DAOUser userDAO = new DAOUser();
-            User user = userDAO.getUser(request.getParameter("userName"), request.getParameter("password"));
-            if (user != null) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("currentSessionUser", user);
-                response.sendRedirect("MainPage.jsp");
-
-            } else {
-                request.setAttribute("errorMessage", "Verifica tus credenciales");
-                requestDispatcher.forward(request, response);
-            }
-        } catch (IOException | ServletException theException) {
-            System.out.println(theException);
-        }
-
+        processRequest(request, response);
     }
 
     /**

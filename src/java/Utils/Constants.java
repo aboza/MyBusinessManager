@@ -32,6 +32,11 @@ public final class Constants {
     public static String ORACLE_GET_PERMISSIONS = "SELECT P.PERMISSION_ID,P.CODE,P.DESCRIPTION FROM BM_PERMISSIONS P"
             + " INNER JOIN BM_PERMISSIONSXROLE PXR ON PXR.PERMISSION_ID = P.PERMISSION_ID"
             + " WHERE PXR.ROLE_ID = ?";
+    public static String ORACLE_GET_USERS = "SELECT U.USER_ID,U.USERNAME,U.ROLE_ID,R.NAME AS ROLE_NAME "
+            + "FROM BM_USERS U INNER JOIN BM_ROLES R ON  R.ROLE_ID = U.ROLE_ID";
+    public static String ORACLE_GET_USER_BY_ID = "SELECT U.USER_ID,U.USERNAME,U.ROLE_ID,R.NAME AS ROLE_NAME "
+            + "FROM BM_USERS U INNER JOIN BM_ROLES R ON  R.ROLE_ID = U.ROLE_ID WHERE USER_ID = ?";
+    public static String ORACLE_GET_USER = "SELECT user_exists(?,?) AS USER_EXISTS FROM dual";
 
     //procedures calls
     public static String ORACLE_UPDATE_VENDOR = "CALL UPDATE_Vendor(?,?,?,?,?,?,?,?,?,?)";
@@ -41,7 +46,15 @@ public final class Constants {
     public static String ORACLE_UPDATE_CUSTOMER = "CALL UPDATE_Customer(?,?,?,?,?,?,?,?,?)";
     public static String ORACLE_CREATE_CUSTOMER = "CALL CREATE_Customer(?,?,?,?,?,?,?,?)";
     public static String ORACLE_DELETE_CUSTOMER = "CALL DELETE_Customer(?)";
-    
+
     public static String ORACLE_DELETE_ROLE = "CALL DELETE_Role(?)";
+
+    public static String ORACLE_CREATE_USER = "CALL CREATE_User(?,?,?)";
+    public static String ORACLE_UPDATE_USER = "CALL UPDATE_User(?,?,?,?)";
+    public static String ORACLE_DELETE_USER = "CALL DELETE_User(?)";
+    
+    
+    
+    
 
 }

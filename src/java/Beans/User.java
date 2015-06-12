@@ -10,12 +10,30 @@ package Beans;
  * @author AlexisDev
  */
 public class User {
+    private int id;
     private String name;
     private String userName;
     private String password;
     private int active;
+    private Role role;
 
     public User() {
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

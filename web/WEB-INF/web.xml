@@ -52,6 +52,18 @@
         <servlet-name>EditRoleServlet</servlet-name>
         <servlet-class>Servlets.EditRoleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SingleUserServlet</servlet-name>
+        <servlet-class>Servlets.SingleUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowUserServlet</servlet-name>
+        <servlet-class>Servlets.ShowUserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>Servlets.EditUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -103,6 +115,18 @@
     <servlet-mapping>
         <servlet-name>EditRoleServlet</servlet-name>
         <url-pattern>/EditRoleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingleUserServlet</servlet-name>
+        <url-pattern>/SingleUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowUserServlet</servlet-name>
+        <url-pattern>/ShowUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserServlet</servlet-name>
+        <url-pattern>/EditUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

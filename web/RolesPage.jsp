@@ -100,7 +100,7 @@
                         <article id="main">
                             <header>
                                 <h2>Roles</h2>
-                                <a href="CreateCustomerServlet" class="button">Nuevo Rol</a>
+                                <a href="" class="button">Nuevo Rol</a>
                                 <h1>Roles Activos</h1>
                                 <%ArrayList<Role> roleList = (ArrayList<Role>) request.getAttribute("RoleList");%>
                                 <div class="row">
