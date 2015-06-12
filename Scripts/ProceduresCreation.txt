@@ -260,7 +260,7 @@ SELECT enc_dec.encrypt(pPassword) ENCRYPTED INTO pass from dual;
 SELECT 'TRUE' INTO strUser_exists 
 FROM BM_USERS 
 WHERE USERNAME = pUserName AND PASSWORD=pass;
-
+RETURN strUser_exists;
 EXCEPTION
   WHEN NO_DATA_FOUND THEN
     strUser_exists := 'FALSE';
