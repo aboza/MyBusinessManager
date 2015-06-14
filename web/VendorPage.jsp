@@ -51,7 +51,7 @@
         </div>
         <!-- Main -->
         <%User activeUser = (User) session.getAttribute("currentSessionUser");
-                    DAOUser userDAO = new DAOUser();%>
+            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -119,7 +119,9 @@
                         <article id="main">
                             <header>
                                 <h2>Proveedores</h2>
+                                <%if (userDAO.UserHasActionPrivilege("actCanCreateVendors", activeUser)) {%>
                                 <a href="CreateVendorServlet" class="button">Nuevo Proveedor</a>
+                                <%}%>
                                 <h1>Proveedores Activos</h1>
                                 <%ArrayList<Vendor> vendorList = (ArrayList<Vendor>) request.getAttribute("VendorList");%>
                                 <div class="row">

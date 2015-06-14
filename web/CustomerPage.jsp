@@ -51,7 +51,7 @@
         </div>
         <!-- Main -->
         <%User activeUser = (User) session.getAttribute("currentSessionUser");
-                   DAOUser userDAO = new DAOUser();%>
+            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -119,7 +119,9 @@
                         <article id="main">
                             <header>
                                 <h2>Clientes</h2>
+                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
                                 <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
+                                <%}%>
                                 <h1>Clientes Activos</h1>
                                 <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
                                 <div class="row">

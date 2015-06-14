@@ -144,9 +144,11 @@
                                 <textarea class="textarea" id="billTo" name="billTo" ></textarea>
                                 <h1>Dirección de Envío</h1>
                                 <textarea class="textarea" id="shipTo" name="shipTo" ></textarea>
+                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
                                 <div>
                                     <input class="button form-button-submit" type="submit" value="Ok" name="Create">                                   
-                                </div>
+                                </div
+                                <%}%>
                             </form>
                         </article>
                     </div>

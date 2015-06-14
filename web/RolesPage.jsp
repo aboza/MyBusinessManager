@@ -51,7 +51,7 @@
         </div>
         <!-- Main -->
         <%User activeUser = (User) session.getAttribute("currentSessionUser");
-                    DAOUser userDAO = new DAOUser();%>
+            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -119,7 +119,9 @@
                         <article id="main">
                             <header>
                                 <h2>Roles</h2>
+                                <%if (userDAO.UserHasActionPrivilege("actCanCreateRoles", activeUser)) {%>
                                 <a href="" class="button">Nuevo Rol</a>
+                                <%}%>
                                 <h1>Roles Activos</h1>
                                 <%ArrayList<Role> roleList = (ArrayList<Role>) request.getAttribute("RoleList");%>
                                 <div class="row">

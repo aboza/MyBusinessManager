@@ -49,7 +49,7 @@
         </div>
         <!-- Main -->
         <%User activeUser = (User) session.getAttribute("currentSessionUser");
-                    DAOUser userDAO = new DAOUser();%>
+            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -148,9 +148,11 @@
                                 </select>
                                 <h1>Dirección</h1>
                                 <textarea class="textarea" id="address" name="address"></textarea>
+                                <%if (userDAO.UserHasActionPrivilege("actCanCreateVendors", activeUser)) {%>
                                 <div>
                                     <input class="button form-button-submit" type="submit" value="Ok" name="Create">
                                 </div>
+                                <%}%>
                             </form>
 
                         </article>

@@ -51,7 +51,7 @@
         </div>
         <!-- Main -->
         <%User activeUser = (User) session.getAttribute("currentSessionUser");
-                    DAOUser userDAO = new DAOUser();%>
+            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -139,11 +139,13 @@
                                         <td><%=permission.getDescription()%></td>
                                     </tr>
                                     <% }%><%--FIN DEL FOR--%>
-                                </table>
+                                </table
+                                <%if (userDAO.UserHasActionPrivilege("actCanEditRoles", activeUser)) {%>
                                 <div>
                                     <input class="button form-button-submit" type="submit" value="Ok" name="Update">
                                     <input class="button form-button-submit" type="submit" value="Delete" name="Delete">
                                 </div>
+                                <%}%>
                             </form>
 
                         </article>

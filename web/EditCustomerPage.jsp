@@ -51,7 +51,7 @@
         </div>
         <!-- Main -->
         <%User activeUser = (User) session.getAttribute("currentSessionUser");
-                    DAOUser userDAO = new DAOUser();%>
+            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -148,10 +148,12 @@
                                 <textarea class="textarea" id="billTo" name="billTo" ><%=currentCustomer.getBillTo()%></textarea>
                                 <h1>Dirección de Envío</h1>
                                 <textarea class="textarea" id="shipTo" name="shipTo" ><%=currentCustomer.getShipTo()%></textarea>
+                                <%if (userDAO.UserHasActionPrivilege("actCanEditCustomers", activeUser)) {%>
                                 <div>
                                     <input class="button form-button-submit" type="submit" value="Ok" name="Update">
                                     <input class="button form-button-submit" type="submit" value="Delete" name="Delete">
                                 </div>
+                                <%}%>
                             </form>
                         </article>
                     </div>

@@ -49,7 +49,7 @@
         </div>
         <!-- Main -->
         <%User activeUser = (User) session.getAttribute("currentSessionUser");
-                    DAOUser userDAO = new DAOUser();%>
+            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -115,6 +115,7 @@
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
+                            <%if (userDAO.UserHasActionPrivilege("actCanCreateRoles", activeUser)) {%>
                             <header>
                                 <h3><a href="">Roles</a></h3>
                             </header>
@@ -123,6 +124,8 @@
                                 a que opciones podrán tener acceso
                             </p>
                             <a href="ShowRoleServlet" class="button">Roles</a>
+                            <%}%>
+                            <%if (userDAO.UserHasActionPrivilege("actCanCreateUsers", activeUser)) {%>
                             <header>
                                 <h3><a href="">Usuarios</a></h3>
                             </header>
@@ -131,6 +134,7 @@
                                 acceso al sistema
                             </p>
                             <a href="ShowUserServlet" class="button">Usuarios</a>
+                            <%}%>
                         </article>
                     </div>
                 </div>
