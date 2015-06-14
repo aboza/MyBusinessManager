@@ -4,6 +4,8 @@
     Author     : AlexisDev
 --%>
 
+<%@page import="DAO.DAOUser"%>
+<%@page import="Beans.User"%>
 <%@page import="Beans.Customer"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
@@ -48,18 +50,21 @@
 
         </div>
         <!-- Main -->
+        <%User activeUser = (User) session.getAttribute("currentSessionUser");
+                   DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
                     <div class="4u" id="sidebar">
                         <section>
+                            <%if (userDAO.UserHasActionPrivilege("actCanAccessInventory", activeUser)) {%>
                             <header>
                                 <h3><a href="">Inventario</a></h3>
                             </header>
                             <p>
                                 Obten control total sobre tu inventario,
                                 manteniendo siempre los productos que necesitas.
-                            </p>
+                            </p>                           
                             <a href="" class="button">Inventario</a>
                             <header>
                                 <h3><a href="">Proveedores</a></h3>
@@ -69,6 +74,8 @@
                                 se sabe cuando estes en apuros.
                             </p>
                             <a href="ShowVendorServlet" class="button">Proveedores</a>
+                            <%}
+                                if (userDAO.UserHasActionPrivilege("actCanAccessBilling", activeUser)) {%>
                             <header>
                                 <h3><a href="">Clientes</a></h3>
                             </header>
@@ -85,14 +92,26 @@
                                 MyBusinessManager
                             </p>
                             <a href="" class="button">Facturación</a>
-                            <h3><a href="">Seguridad</a></h3>
+                            <%}
+                                if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
+                            <header>
+                                <h3><a href="">Seguridad</a></h3>
                             </header>
                             <p>
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="" class="button">Seguridad</a>
-
+                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
+                            <%}
+                                if (userDAO.UserHasActionPrivilege("actCanAccessReports", activeUser)) {%>
+                            <header>
+                                <h3><a href="">Reportes</a></h3>
+                            </header>
+                            <p>
+                                Reportes del Sistema
+                            </p>
+                            <a href="" class="button">Reportes</a>
+                            <%}%>
                         </section>
                         <hr />
                     </div>
