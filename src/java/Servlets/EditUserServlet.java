@@ -8,7 +8,6 @@ package Servlets;
 import Beans.Role;
 import Beans.User;
 import DAO.DAOUser;
-import DAO.DAOVendor;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -40,7 +40,7 @@ public class SingleUserServlet extends HttpServlet {
         
         DAORole roleDAO = new DAORole();
         ArrayList<Role> roleList = roleDAO.getAllRoles();
-        
+
         request.getSession().setAttribute("currentUser", userBean);
         request.getSession().setAttribute("RoleList", roleList);
         request.getRequestDispatcher("EditUserPage.jsp").forward(request, response);

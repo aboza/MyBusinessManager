@@ -327,3 +327,29 @@ END;
 grant execute on enc_dec to BUSINESSMANAGER_DB;
 create or replace public synonym enc_dec for sys.enc_dec;
 
+CREATE OR REPLACE FUNCTION USER_HAS_PRIVILEGE(
+pUserName IN  VARCHAR2,
+pAction IN VARCHAR2
+)
+RETURN VARCHAR2
+IS 
+has_privilege VARCHAR2(10);
+user_Role NUMBER;
+BEGIN
+
+SELECT Role_ID INTO user_Role FROM BM_USERS
+WHERE USERNAME = pUserName;
+
+SELECT 'TRUE' INTO has_privilege 
+FROM BM_PERMISSIONSXROLE PXR
+INNER JOIN BM_PERMISSIONS P ON P.PERMISSION_ID = PXR.PERMISSION_ID
+WHERE PXR.ROLE_ID = user_Role AND P.CODE =  pAction;
+
+RETURN has_privilege;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    has_privilege := 'FALSE';
+    
+RETURN has_privilege;
+END;
+

@@ -64,6 +64,10 @@
         <servlet-name>EditUserServlet</servlet-name>
         <servlet-class>Servlets.EditUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateUserServlet</servlet-name>
+        <servlet-class>Servlets.CreateUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>EditUserServlet</servlet-name>
         <url-pattern>/EditUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateUserServlet</servlet-name>
+        <url-pattern>/CreateUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

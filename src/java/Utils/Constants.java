@@ -52,6 +52,8 @@ public final class Constants {
     public static String ORACLE_CREATE_USER = "CALL CREATE_User(?,?,?)";
     public static String ORACLE_UPDATE_USER = "CALL UPDATE_User(?,?,?,?)";
     public static String ORACLE_DELETE_USER = "CALL DELETE_User(?)";
+    public static String ORACLE_USER_HAS_ACTION_PRIVILEGE = "SELECT USER_HAS_PRIVILEGE(?,?) AS HAS_PRIVELEGE FROM dual";
+    
     
     
     

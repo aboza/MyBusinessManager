@@ -13,7 +13,7 @@ CREATE TABLE BM_USERS
 (
   USER_ID NUMBER GENERATED ALWAYS AS IDENTITY NOT NULL 
 , USERNAME VARCHAR2(150) NOT NULL 
-, PASSWORD BLOB NOT NULL 
+, PASSWORD VARCHAR2(250)NOT NULL 
 , IS_ACTIVE NUMBER(1, 0) DEFAULT 1 NOT NULL
 , Role_ID NUMBER NOT NULL
 , CONSTRAINT BM_USERS_PK PRIMARY KEY (USER_ID) ENABLE
@@ -361,6 +361,7 @@ INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanEditUsers','Usuario
 INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanAccessInventory','Usuario posee acceso al modulo de Inventario');
 INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanAccessBilling','Usuario posee acceso al modulo de Facturación');
 INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanAccessReports','Usuario posee acceso al modulo de Reportes');
+INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanAccessSecurity','Usuario posee acceso al modulo de Seguridad');
 INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanPostReceipts','Usuario puede aplicar Recibos');
 INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanVoidReceipts','Usuario puede anular Recibos');
 INSERT INTO BM_PERMISSIONS (CODE,DESCRIPTION) VALUES ('actCanPostPurchaseOrders','Usuario puede aplicar Ordenes de Compra');

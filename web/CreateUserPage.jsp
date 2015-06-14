@@ -1,11 +1,11 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
+    Document   : CreateUserPage
+    Created on : 13/06/2015, 08:32:58 PM
     Author     : AlexisDev
 --%>
 
-<%@page import="DAO.DAOUser"%>
-<%@page import="Beans.User"%>
+<%@page import="Beans.Role"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -48,32 +48,27 @@
 
         </div>
         <!-- Main -->
-        <%User activeUser = (User) session.getAttribute("currentSessionUser");
-            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
                     <div class="4u" id="sidebar">
                         <section>
-                            <%if (userDAO.UserHasActionPrivilege("actCanAccessInventory", activeUser)) {%>
                             <header>
                                 <h3><a href="">Inventario</a></h3>
                             </header>
                             <p>
                                 Obten control total sobre tu inventario,
                                 manteniendo siempre los productos que necesitas.
-                            </p>                           
+                            </p>
                             <a href="" class="button">Inventario</a>
                             <header>
-                                <h3><a href="">Proveedores</a></h3>
+                                <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
                             <p>
                                 Mante siempre a tus proveedores cerca, nunca
                                 se sabe cuando estes en apuros.
                             </p>
                             <a href="ShowVendorServlet" class="button">Proveedores</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessBilling", activeUser)) {%>
                             <header>
                                 <h3><a href="">Clientes</a></h3>
                             </header>
@@ -90,33 +85,45 @@
                                 MyBusinessManager
                             </p>
                             <a href="" class="button">Facturación</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
-                            <header>
-                                <h3><a href="">Seguridad</a></h3>
+                            <h3><a href="">Seguridad</a></h3>
                             </header>
                             <p>
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessReports", activeUser)) {%>
-                            <header>
-                                <h3><a href="">Reportes</a></h3>
-                            </header>
-                            <p>
-                                Reportes del Sistema
-                            </p>
-                            <a href="" class="button">Reportes</a>
-                            <%}%>
+                            <a href="" class="button">Seguridad</a>
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
-
+                            <header>
+                                <h2>Usuario</h2>  
+                            </header>
+                            <form method="post" action="CreateUserServlet">
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                <h1>Usuario</h1>
+                                <input class="longtext" name="username" id="username" >
+                                <h1>Password</h1>
+                                <input class="longtext" type="password" name="password" id="password">
+                                <h1>Confirmar Password</h1>
+                                <input class="longtext" type="password" name="password2" id="password2">
+                                <h1>Rol</h1>
+                                <%ArrayList<Role> roleList = (ArrayList<Role>) session.getAttribute("RoleList");%>                             
+                                <select class="select" name="roleId" id="roleId">
+                                    <%for (Role actualRole : roleList) {%><%--INICIO DEL FOR--%>
+                                    <option class="option" value="<%=actualRole.getId()%>"><%=actualRole.getName()%></option>
+                                    <%}%><%--FIN DEL FOR--%>
+                                </select>
+                                <div>
+                                    <input class="button form-button-submit" type="submit" value="Ok" name="Create">
+                                </div>
+                            </form>
                         </article>
                     </div>
                 </div>

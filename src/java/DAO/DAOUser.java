@@ -122,5 +122,42 @@ public class DAOUser {
             return null; // error del sistema
         }
     }
+    
+    public void createUser(User vUser) {
+        try {
+            OracleConnectionFactory connection = new OracleConnectionFactory();
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_CREATE_USER);
+            //Colocamos los parametros de la consulta
+            statement.setString(1, vUser.getUserName());
+            statement.setString(2, vUser.getPassword());
+            statement.setInt(3, vUser.getRole().getId());
+            //ejecutamos la consulta
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public Boolean UserHasActionPrivilege(String privilege, User user){
+        try {
+            OracleConnectionFactory connection = new OracleConnectionFactory();
+            PreparedStatement statement = connection.getConnection().prepareStatement(Constants.ORACLE_USER_HAS_ACTION_PRIVILEGE);
+            statement.setString(1, user.getUserName());
+            statement.setString(2, privilege);
+            ResultSet var_resultSet = statement.executeQuery();
+            var_resultSet.next();
+            if (var_resultSet.getString("HAS_PRIVELEGE").equals("TRUE")){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
+            return null; // error del sistema
+        }
+        
+    }
 
 }
