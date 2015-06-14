@@ -251,6 +251,7 @@ END;
 /
 
 grant execute on enc_dec to BUSINESSMANAGER_DB;
+create or replace public synonym enc_dec for sys.enc_dec;
 
 CREATE OR REPLACE PROCEDURE CREATE_User(
 pUserName IN VARCHAR2,
@@ -320,7 +321,6 @@ END;
 COMMIT;
 END;
 
-create or replace public synonym enc_dec for sys.enc_dec;
 
 CREATE OR REPLACE FUNCTION USER_HAS_PRIVILEGE(
 pUserName IN  VARCHAR2,
