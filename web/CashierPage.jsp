@@ -1,12 +1,12 @@
 <%-- 
-    Document   : CustomerPage
-    Created on : 04/06/2015, 10:29:52 PM
-    Author     : AlexisDev
+    Document   : CashierPage
+    Created on : 21-jun-2015, 3:27:25
+    Author     : Glenn
 --%>
 
 <%@page import="DAO.DAOUser"%>
 <%@page import="Beans.User"%>
-<%@page import="Beans.Customer"%>
+<%@page import="Beans.Cashier"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
@@ -118,15 +118,15 @@
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h2>Clientes</h2>
-                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
-                                <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
-                                <%}%>
-                                <h1>Clientes Activos</h1>
-                                <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
+                                <h2>Cajeros</h2>
+                                <!-- TO DO!!!! poner "si tiene permiso entonces: -->
+                                <a href="CreateCashierServlet" class="button">Nuevo Cajero</a>
+                                <!-- TO DO!!!! cerrar "si tiene permiso entonces:-->
+                                <h1>Cajeros</h1>
+                                <%ArrayList<Cashier> cashierList = (ArrayList<Cashier>) request.getAttribute("CashierList");%>
                                 <div class="row">
-                                    <%for (Customer actualCustomer : customerList) {%>
-                                    <A href="SingleCustomerServlet?customerId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
+                                    <%for (Cashier actualCashier : cashierList) {%>
+                                    <A href="SingleCashierServlet?cashierId=<%=actualCashier.getId()%>" ><%=actualCashier.getName()%></A>
                                     <div class="row"></div>
                                     <%}%>
                                 </div>
@@ -162,4 +162,3 @@
         </div>
     </body>
 </html>
-

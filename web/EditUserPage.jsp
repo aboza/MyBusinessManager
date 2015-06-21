@@ -91,7 +91,7 @@
                                 Ejecuta cobros rapidos y sencillos desde
                                 MyBusinessManager
                             </p>
-                            <a href="" class="button">Facturación</a>
+                            <a href="ShowCashierServlet" class="button">Facturación</a>
                             <%}
                                 if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
                             <header>
