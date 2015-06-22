@@ -1,16 +1,19 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
-    Author     : AlexisDev
+    Document   : ShowInventory
+    Created on : 19-jun-2015, 22:11:43
+    Author     : Rafael
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="Beans.WareHouse"%>
 --%>
 
-<%@page import="DAO.DAOUser"%>
-<%@page import="Beans.User"%>
+
+
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MyBusinessManager|MainPage</title>
+        <title>MyBusinessManager|ShowInventory</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -28,7 +31,8 @@
         <link rel="stylesheet" href="css/style-noscript.css" />
         </noscript>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
-    </head>
+        
+   </head>
     <body class="left-sidebar">
         <!-- Header -->
         <div id="header">
@@ -48,32 +52,27 @@
 
         </div>
         <!-- Main -->
-        <%User activeUser = (User) session.getAttribute("currentSessionUser");
-            DAOUser userDAO = new DAOUser();%>
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
                     <div class="4u" id="sidebar">
                         <section>
-                            <%if (userDAO.UserHasActionPrivilege("actCanAccessInventory", activeUser)) {%>
                             <header>
                                 <h3><a href="">Inventario</a></h3>
                             </header>
                             <p>
                                 Obten control total sobre tu inventario,
                                 manteniendo siempre los productos que necesitas.
-                            </p>                           
-                            <a href="ShowWareHouseServlet" class="button">Inventario</a>
+                            </p>
+                            <a href="" class="button">Inventario</a>
                             <header>
-                                <h3><a href="">Proveedores</a></h3>
+                                <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
                             <p>
                                 Mante siempre a tus proveedores cerca, nunca
                                 se sabe cuando estes en apuros.
                             </p>
                             <a href="ShowVendorServlet" class="button">Proveedores</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessBilling", activeUser)) {%>
                             <header>
                                 <h3><a href="">Clientes</a></h3>
                             </header>
@@ -90,33 +89,37 @@
                                 MyBusinessManager
                             </p>
                             <a href="" class="button">Facturación</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
-                            <header>
-                                <h3><a href="">Seguridad</a></h3>
+                            <h3><a href="">Seguridad</a></h3>
                             </header>
                             <p>
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessReports", activeUser)) {%>
-                            <header>
-                                <h3><a href="">Reportes</a></h3>
-                            </header>
-                            <p>
-                                Reportes del Sistema
-                            </p>
-                            <a href="" class="button">Reportes</a>
-                            <%}%>
+                            <a href="" class="button">Seguridad</a>
                         </section>
                         <hr />
                     </div>
+                    
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
-
+                            <header>
+                                <h2>Inventario</h2>  
+                            </header>
+                            
+                            <table>
+                                <tr>
+                                  <td><strong>Bodega</strong></td>
+                                  <td><strong>Ubicacion</strong></td>
+                                  <td><strong>Producto</strong></td>
+                                  <td><strong>Codigo</strong></td>
+                                  <td><strong>Descripcion</strong></td>
+                                  <td><strong>Costo</strong></td>
+                                  <td><strong>Reorder Point</strong></td>
+                                  <td><strong>On hand</strong></td>
+                                </tr>
+                                </table>
+                            
+                            
                         </article>
                     </div>
                 </div>

@@ -55,7 +55,11 @@ public final class Constants {
     public static String ORACLE_USER_HAS_ACTION_PRIVILEGE = "SELECT USER_HAS_PRIVILEGE(?,?) AS HAS_PRIVELEGE FROM dual";
     
     
-    
+    public  static  String ORACLE_GET_ALL_WAREHOUSE = "Select c.name , c.address, b.name, b.code,"
+            + " b.description, b.cost_per_unit,b.reorder_point,b.on_hand from "
+            + "BUSINESSMANAGER_DB.bm_inventory A,BUSINESSMANAGER_DB.bm_items B ,"
+            + "BUSINESSMANAGER_DB.bm_warehouses C " 
+            + "where a.warehouse_id = c.warehouse_id and b.item_id = a.item_id;";
     
     
 
