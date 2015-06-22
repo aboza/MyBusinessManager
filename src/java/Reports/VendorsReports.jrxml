@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="185ef297-7591-4e44-8e4b-2d323b2b2379">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="69"/>
+	<queryString>
+		<![CDATA[SELECT
+     BM_VENDORS."VENDOR_ID" AS BM_VENDORS_VENDOR_ID,
+     BM_VENDORS."NAME" AS BM_VENDORS_NAME,
+     BM_VENDORS."COMPANY_NAME" AS BM_VENDORS_COMPANY_NAME,
+     BM_VENDORS."CONTACT" AS BM_VENDORS_CONTACT,
+     BM_VENDORS."VENDOR_TYPE" AS BM_VENDORS_VENDOR_TYPE,
+     BM_VENDORS."ADDRESS" AS BM_VENDORS_ADDRESS,
+     BM_VENDORS."PHONE" AS BM_VENDORS_PHONE,
+     BM_VENDORS."ALT_PHONE" AS BM_VENDORS_ALT_PHONE,
+     BM_VENDORS."FAX" AS BM_VENDORS_FAX,
+     BM_VENDORS."EMAIL" AS BM_VENDORS_EMAIL
+FROM
+     "BUSINESSMANAGER_DB"."BM_VENDORS" BM_VENDORS]]>
+	</queryString>
+	<field name="BM_VENDORS_VENDOR_ID" class="java.math.BigDecimal"/>
+	<field name="BM_VENDORS_NAME" class="java.lang.String"/>
+	<field name="BM_VENDORS_COMPANY_NAME" class="java.lang.String"/>
+	<field name="BM_VENDORS_CONTACT" class="java.lang.String"/>
+	<field name="BM_VENDORS_VENDOR_TYPE" class="java.lang.String"/>
+	<field name="BM_VENDORS_ADDRESS" class="java.lang.String"/>
+	<field name="BM_VENDORS_PHONE" class="java.lang.String"/>
+	<field name="BM_VENDORS_ALT_PHONE" class="java.lang.String"/>
+	<field name="BM_VENDORS_FAX" class="java.lang.String"/>
+	<field name="BM_VENDORS_EMAIL" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="87" y="0" width="403" height="47" uuid="01d76e78-9652-4c03-88da-c7700de1807d"/>
+				<textElement>
+					<font size="34"/>
+				</textElement>
+				<text><![CDATA[Reporte de proveedores]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="190" height="20" uuid="bb367d2e-0395-4bf4-bd77-008ca74e17b5"/>
+				<text><![CDATA[Información general de los proveedores]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="cb70ecf1-e048-44d7-ac8a-eac626f9600f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="201c175c-62e1-4af0-9c54-40da83927abb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="02704724-7740-4a95-92b6-5d7cd6df6bad"/>
+				<textFieldExpression><![CDATA[$F{BM_VENDORS_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="33fede46-bc03-4054-b975-f94a824b1e1b"/>
+				<textFieldExpression><![CDATA[$F{BM_VENDORS_PHONE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="13" splitType="Stretch"/>
+	</summary>
+</jasperReport>
