@@ -68,6 +68,22 @@
         <servlet-name>CreateUserServlet</servlet-name>
         <servlet-class>Servlets.CreateUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SingleCashierServlet</servlet-name>
+        <servlet-class>Servlets.SingleCashierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowCashierServlet</servlet-name>
+        <servlet-class>Servlets.ShowCashierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditCashierServlet</servlet-name>
+        <servlet-class>Servlets.EditCashierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateCashierServlet</servlet-name>
+        <servlet-class>Servlets.CreateCashierServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -135,6 +151,22 @@
     <servlet-mapping>
         <servlet-name>CreateUserServlet</servlet-name>
         <url-pattern>/CreateUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateCashierServlet</servlet-name>
+        <url-pattern>/CreateCashierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCashierServlet</servlet-name>
+        <url-pattern>/EditCashierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowCashierServlet</servlet-name>
+        <url-pattern>/ShowCashierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingleCashierServlet</servlet-name>
+        <url-pattern>/SingleCashierServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
