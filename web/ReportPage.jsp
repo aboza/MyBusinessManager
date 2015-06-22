@@ -1,7 +1,7 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
-    Author     : AlexisDev
+    Document   : ReportsPage
+    Created on : 21/06/2015, 19:00:28 PM
+    Author     : Bryan
 --%>
 
 <%@page import="DAO.DAOUser"%>
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MyBusinessManager|MainPage</title>
+        <title>MyBusinessManager|ReportsPage</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -63,7 +63,7 @@
                                 Obten control total sobre tu inventario,
                                 manteniendo siempre los productos que necesitas.
                             </p>                           
-                            <a href="ShowWareHouseServlet" class="button">Inventario</a>
+                            <a href="" class="button">Inventario</a>
                             <header>
                                 <h3><a href="">Proveedores</a></h3>
                             </header>
@@ -108,15 +108,22 @@
                             <p>
                                 Reportes del Sistema
                             </p>
-                            <a href="ReportPage.jsp" class="button">Reportes</a>
+                            <a href="" class="button">Reportes</a>
                             <%}%>
                         </section>
                         <hr />
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
-
-
+                            <header>
+                                <h2>Reportes</h2>
+                                <p>
+                                    <a href="CreateVendorsReportServlet" class="button">Reporte de proveedores</a>
+                                </p>
+                                <p>
+                                    <a href="CreateProductsReportServlet" class="button">Inventario de productos</a>
+                                </p>
+                            </header>
                         </article>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="185ef297-7591-4e44-8e4b-2d323b2b2379">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="69"/>
+	<property name="ireport.y" value="52"/>
 	<queryString>
 		<![CDATA[SELECT
      BM_VENDORS."VENDOR_ID" AS BM_VENDORS_VENDOR_ID,
@@ -34,7 +34,7 @@ FROM
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="87" y="0" width="403" height="47" uuid="01d76e78-9652-4c03-88da-c7700de1807d"/>
+				<reportElement x="87" y="0" width="403" height="47" forecolor="#0000CC" />
 				<textElement>
 					<font size="34"/>
 				</textElement>
@@ -45,7 +45,10 @@ FROM
 	<pageHeader>
 		<band height="24" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="190" height="20" uuid="bb367d2e-0395-4bf4-bd77-008ca74e17b5"/>
+				<reportElement x="0" y="0" width="320" height="24" />
+				<textElement>
+					<font size="16"/>
+				</textElement>
 				<text><![CDATA[Información general de los proveedores]]></text>
 			</staticText>
 		</band>
@@ -53,30 +56,63 @@ FROM
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="cb70ecf1-e048-44d7-ac8a-eac626f9600f"/>
+				<reportElement x="0" y="0" width="100" height="20" />
 				<textElement>
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="0" width="100" height="20" uuid="201c175c-62e1-4af0-9c54-40da83927abb"/>
+				<reportElement x="238" y="0" width="100" height="20" />
 				<textElement>
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="138" height="20" />
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre de la compañía]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="0" width="100" height="20" />
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contacto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="0" width="117" height="20" />
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="100" height="20" uuid="02704724-7740-4a95-92b6-5d7cd6df6bad"/>
+				<reportElement x="0" y="0" width="100" height="20" />
 				<textFieldExpression><![CDATA[$F{BM_VENDORS_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="0" width="100" height="20" uuid="33fede46-bc03-4054-b975-f94a824b1e1b"/>
+				<reportElement x="238" y="0" width="100" height="20" />
 				<textFieldExpression><![CDATA[$F{BM_VENDORS_PHONE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="138" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_VENDORS_COMPANY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="0" width="100" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_VENDORS_CONTACT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="0" width="117" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_VENDORS_EMAIL}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
