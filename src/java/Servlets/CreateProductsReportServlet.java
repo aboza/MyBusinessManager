@@ -49,7 +49,7 @@ public class CreateProductsReportServlet extends HttpServlet {
             JasperDesign jasperDesign = null;
             Map parameters = new HashMap();
             String path = getServletContext().getRealPath("/Reports/");
-            jasperDesign = JRXmlLoader.load(path+"/ProductsReport.jrxml");
+            jasperDesign = JRXmlLoader.load(path+"/InventaryReport.jrxml");
             jasperReport = JasperCompileManager.compileReport(jasperDesign);
             byte[] byteStream = JasperRunManager.runReportToPdf(jasperReport, parameters, a);                            
             OutputStream outStream = response.getOutputStream();

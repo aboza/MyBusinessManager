@@ -51,7 +51,7 @@ public class CreateVendorsReportServlet extends HttpServlet {
             JasperDesign jasperDesign = null;
             Map parameters = new HashMap();
             String path = getServletContext().getRealPath("/Reports/");
-            jasperDesign = JRXmlLoader.load(path+"/VendorsReports.jrxml");
+            jasperDesign = JRXmlLoader.load(path+"/VendorsReport.jrxml");
             jasperReport = JasperCompileManager.compileReport(jasperDesign);
             byte[] byteStream = JasperRunManager.runReportToPdf(jasperReport, parameters, a);                            
             OutputStream outStream = response.getOutputStream();
