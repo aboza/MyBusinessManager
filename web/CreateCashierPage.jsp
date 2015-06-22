@@ -1,13 +1,11 @@
 <%-- 
-    Document   : CustomerPage
-    Created on : 04/06/2015, 10:29:52 PM
-    Author     : AlexisDev
+    Document   : CreateCashierPage
+    Created on : 21-jun-2015, 3:56:53
+    Author     : Glenn
 --%>
 
 <%@page import="DAO.DAOUser"%>
 <%@page import="Beans.User"%>
-<%@page import="Beans.Customer"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -118,19 +116,23 @@
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h2>Clientes</h2>
-                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
-                                <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
-                                <%}%>
-                                <h1>Clientes Activos</h1>
-                                <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
-                                <div class="row">
-                                    <%for (Customer actualCustomer : customerList) {%>
-                                    <A href="SingleCustomerServlet?customerId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
-                                    <div class="row"></div>
-                                    <%}%>
-                                </div>
+                                <h2>Cajero</h2>  
                             </header>
+                            <form method="post" action="CreateCashierServlet">    
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                <h1>Nombre</h1>
+                                <input class="longtext" name="cashierName" id="cashierName" >
+                                <!-- TO DO!!!! poner "si tiene permiso entonces:-->
+                                <div>
+                                    <input class="button form-button-submit" type="submit" value="Ok" name="Create">
+                                </div>
+                                <!-- TO DO!!!! cerrar "si tiene permiso entonces:-->
+                            </form>
 
                         </article>
                     </div>
@@ -162,4 +164,3 @@
         </div>
     </body>
 </html>
-

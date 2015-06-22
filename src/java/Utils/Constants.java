@@ -37,6 +37,9 @@ public final class Constants {
     public static String ORACLE_GET_USER_BY_ID = "SELECT U.USER_ID,U.USERNAME,U.ROLE_ID,R.NAME AS ROLE_NAME "
             + "FROM BM_USERS U INNER JOIN BM_ROLES R ON  R.ROLE_ID = U.ROLE_ID WHERE USER_ID = ?";
     public static String ORACLE_GET_USER = "SELECT user_exists(?,?) AS USER_EXISTS FROM dual";
+    
+    public static String ORACLE_GET_CASHIERS = "SELECT CASHIER_ID ,NAME FROM BM_CASHIERS";
+    public static String ORACLE_GET_CASHIER_BY_ID = "SELECT CASHIER_ID ,NAME FROM BM_CASHIERS WHERE CASHIER_ID = ?";
 
     //procedures calls
     public static String ORACLE_UPDATE_VENDOR = "CALL UPDATE_Vendor(?,?,?,?,?,?,?,?,?,?)";
@@ -52,7 +55,12 @@ public final class Constants {
     public static String ORACLE_CREATE_USER = "CALL CREATE_User(?,?,?)";
     public static String ORACLE_UPDATE_USER = "CALL UPDATE_User(?,?,?,?)";
     public static String ORACLE_DELETE_USER = "CALL DELETE_User(?)";
+    
     public static String ORACLE_USER_HAS_ACTION_PRIVILEGE = "SELECT USER_HAS_PRIVILEGE(?,?) AS HAS_PRIVELEGE FROM dual";
+    
+    public static String ORACLE_CREATE_CASHIER = "CALL CREATE_Cashier(?)";
+    public static String ORACLE_UPDATE_CASHIER = "CALL UPDATE_Cashier(?,?)";
+    public static String ORACLE_DELETE_CASHIER = "CALL DELETE_Cashier(?)";
     
     
     public  static  String ORACLE_GET_ALL_WAREHOUSE = "Select c.name , c.address, b.name, b.code,"
