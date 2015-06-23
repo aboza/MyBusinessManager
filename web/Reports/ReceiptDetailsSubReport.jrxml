@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pReceiptId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     BM_RECEIPT_DETAILS."RECEIPT_DETAIL_ID" AS BM_RECEIPT_DETAILS_RECEIPT_DET,
+     BM_RECEIPT_DETAILS."ITEM_ID" AS BM_RECEIPT_DETAILS_ITEM_ID,
+     BM_RECEIPT_DETAILS."RECEIPT_ID" AS BM_RECEIPT_DETAILS_RECEIPT_ID,
+     BM_RECEIPT_DETAILS."QUANTITY" AS BM_RECEIPT_DETAILS_QUANTITY,
+     BM_RECEIPT_DETAILS."TAX" AS BM_RECEIPT_DETAILS_TAX,
+     BM_RECEIPT_DETAILS."COST" AS BM_RECEIPT_DETAILS_COST,
+     BM_RECEIPT_DETAILS."TOTAL_AMOUNT" AS BM_RECEIPT_DETAILS_TOTAL_AMOUN,
+     BM_RECEIPT_DETAILS."DISCOUNT" AS BM_RECEIPT_DETAILS_DISCOUNT,
+     BM_ITEMS."ITEM_ID" AS BM_ITEMS_ITEM_ID,
+     BM_ITEMS."NAME" AS BM_ITEMS_NAME,
+     BM_ITEMS."DESCRIPTION" AS BM_ITEMS_DESCRIPTION
+FROM
+     "BUSINESSMANAGER_DB"."BM_ITEMS" BM_ITEMS INNER JOIN "BUSINESSMANAGER_DB"."BM_RECEIPT_DETAILS" BM_RECEIPT_DETAILS ON BM_ITEMS."ITEM_ID" = BM_RECEIPT_DETAILS."ITEM_ID"
+WHERE
+     BM_RECEIPT_DETAILS."RECEIPT_ID" = $P{pReceiptId}]]>
+	</queryString>
+	<field name="BM_RECEIPT_DETAILS_RECEIPT_DET" class="java.math.BigDecimal"/>
+	<field name="BM_RECEIPT_DETAILS_ITEM_ID" class="java.math.BigDecimal"/>
+	<field name="BM_RECEIPT_DETAILS_RECEIPT_ID" class="java.lang.String"/>
+	<field name="BM_RECEIPT_DETAILS_QUANTITY" class="java.lang.String"/>
+	<field name="BM_RECEIPT_DETAILS_TAX" class="java.lang.String"/>
+	<field name="BM_RECEIPT_DETAILS_COST" class="java.lang.String"/>
+	<field name="BM_RECEIPT_DETAILS_TOTAL_AMOUN" class="java.lang.String"/>
+	<field name="BM_RECEIPT_DETAILS_DISCOUNT" class="java.lang.String"/>
+	<field name="BM_ITEMS_ITEM_ID" class="java.lang.String"/>
+	<field name="BM_ITEMS_NAME" class="java.lang.String"/>
+	<field name="BM_ITEMS_DESCRIPTION" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="69" height="20" />
+				<text><![CDATA[Articulo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="0" width="100" height="20" />
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="0" width="100" height="20" />
+				<text><![CDATA[Costo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" />
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="0" width="86" height="20" />
+				<text><![CDATA[Descuento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="100" height="20" />
+				<text><![CDATA[Impuesto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="69" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_ITEMS_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="0" width="100" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_ITEMS_DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="0" width="100" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_RECEIPT_DETAILS_COST}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_RECEIPT_DETAILS_TOTAL_AMOUN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="0" width="86" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_RECEIPT_DETAILS_DISCOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="100" height="20" />
+				<textFieldExpression><![CDATA[$F{BM_RECEIPT_DETAILS_TAX}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
