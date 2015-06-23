@@ -149,24 +149,46 @@
                                 <h1>SHIP_TO</h1>
                                 <input class="longtext" name="customerShipTo" id="customerShipTo" value="<%=currentReceipt.getCustomer().getShipTo()%>">
                                 <p>Detalle</p>
-                                <table>
-                                    <th>ID</th>
-                                    
+                                <table border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Cantidad</th>
+                                            <th>Costo</th>
+                                            <th>Impuesto</th>
+                                            <th>Descuento</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
                                         <%for (ReceiptDetail detallefactura : currentReceipt.getDetails()) {%><%--INICIO DEL FOR--%>
-                                    <tr>
-                                        <td><%=detallefactura.getItemID()%></td>
-                                        
-                                    </tr>
+                                    <tbody>
+                                            <td><%=detallefactura.getItemID()%></td>
+                                            <td><%=detallefactura.getQuantity()%></td>
+                                            <td><%=detallefactura.getCost()%></td>
+                                            <td><%=detallefactura.getTax()%></td>
+                                            <td><%=detallefactura.getDiscount()%></td>
+                                            <td><%=detallefactura.getTotalAmount()%></td>
+                                        </tr>
+                                    </tbody>
                                     <% }%><%--FIN DEL FOR--%>
-                                </table
-                                <%if (userDAO.UserHasActionPrivilege("actCanEditRoles", activeUser)) {%>
-                                <div>
-                                    <input class="button form-button-submit" type="submit" value="Ok" name="Update">
-                                    <input class="button form-button-submit" type="submit" value="Delete" name="Delete">
-                                </div>
-                                <%}%>
+                                </table>
+                                <h1>Fecha</h1>
+                                <input class="longtext" name="receiptDate" id="receiptDate" value="<%=currentReceipt.getDate()%>">
+                                <h1>Número de Factura</h1>
+                                <input class="longtext" name="receiptNumber" id="receiptNumber" value="<%=currentReceipt.getNumber()%>">
+                                <h1>Método de Pago</h1>
+                                <input class="longtext" name="receiptPaymentMethod" id="receiptPaymentMethod" value="<%=currentReceipt.getPaymentMethod()%>">
+                                <h1>Observaciones</h1>
+                                <input class="longtext" name="receiptObservations" id="receiptObservations" value="<%=currentReceipt.getObservations()%>">
+                                <h1>Descuento</h1>
+                                <input class="longtext" name="receiptDiscount" id="receiptDiscount" value="<%=currentReceipt.getDiscount()%>">
+                                <h1>Impuesto</h1>
+                                <input class="longtext" name="receiptTax" id="receiptTax" value="<%=currentReceipt.getTax()%>">
+                                <h1>Subtotal</h1>
+                                <input class="longtext" name="receiptSubTotal" id="receiptSubTotal" value="<%=currentReceipt.getSubtotal()%>">
+                                <h1>Total</h1>
+                                <input class="longtext" name="receiptTotal" id="receiptTotal" value="<%=currentReceipt.getTotal()%>">
                             </form>
-
                         </article>
                     </div>
                 </div>
