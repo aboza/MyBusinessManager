@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rafael
  */
-@WebServlet(name = "ShowWareHouseServlet", urlPatterns = {"/ShowWareHouseServlet"})
+
 public class ShowWareHouseServlet extends HttpServlet {
 
     /**
@@ -37,7 +36,13 @@ public class ShowWareHouseServlet extends HttpServlet {
         DAOWareHouse WarehouseDAO = new DAOWareHouse();
         ArrayList<WareHouse> WarehouseList;
         WarehouseList = WarehouseDAO.getWarehouse();
+        
+        DAOWareHouse allWarehouseDAO = new DAOWareHouse();
+        ArrayList<WareHouse> WarehouseList2;
+        WarehouseList2 = allWarehouseDAO.getAllWarehouse();
+        
         request.setAttribute("WarehouseList", WarehouseList);
+        request.setAttribute("WarehouseListALL", WarehouseList2);
         request.getRequestDispatcher("ShowInventory.jsp").forward(request, response);
         }
 

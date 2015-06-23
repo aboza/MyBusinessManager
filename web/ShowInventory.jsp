@@ -3,12 +3,12 @@
     Created on : 19-jun-2015, 22:11:43
     Author     : Rafael
 
-<%@page import="java.util.ArrayList"%>
-<%@page import="Beans.WareHouse"%>
+
 --%>
 
 
-
+<%@page import="java.util.ArrayList"%>
+<%@page import="Beans.WareHouse"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -52,6 +52,8 @@
 
         </div>
         <!-- Main -->
+        
+
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
@@ -64,7 +66,7 @@
                                 Obten control total sobre tu inventario,
                                 manteniendo siempre los productos que necesitas.
                             </p>
-                            <a href="" class="button">Inventario</a>
+                            <a href="ShowWareHouseServlet" class="button">Inventario</a>
                             <header>
                                 <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
@@ -103,10 +105,34 @@
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h2>Inventario</h2>  
+                                <%ArrayList<WareHouse> wareHouseList = (ArrayList<WareHouse>) request.getAttribute("WarehouseList");%>   
+                                <%ArrayList<WareHouse> wareHouseListALL = (ArrayList<WareHouse>) request.getAttribute("WarehouseListALL");%>
+                                <h2>Inventario de las Bodegas</h2>  
                             </header>
                             
+                            <form method="post" action="ShowWareHouseServletONE">
+                                
+                            <select class="select" id="whoWareHouse" name="whoWareHouse">           
+                                    <option value="Todas">Todas</option>                              
+                            <%for (WareHouse listap : wareHouseListALL)  
+                                      {%> 
+                                      <option value= <%=listap.getName()%> > <%=listap.getName()%></option>                                      
+                                      <%}%>      
+                            </select>
+                            
+                        <input type="submit" value="Mostrar" name="Mostrar">
+                          </form>    
+                            
+                            
+                                      <%--    
+                            <%String valor = request.getParameter("whoWareHouse");
+                            System.out.println(valor);%>
+                                               
+                            <a href=ShowWareHouseServletONE?nameWareHouse=<%=valor%> class="button">Mostrar</a>
+                                      --%>
+                                      
                             <table>
+
                                 <tr>
                                   <td><strong>Bodega</strong></td>
                                   <td><strong>Ubicacion</strong></td>
@@ -116,7 +142,24 @@
                                   <td><strong>Costo</strong></td>
                                   <td><strong>Reorder Point</strong></td>
                                   <td><strong>On hand</strong></td>
-                                </tr>
+                                  
+                                  
+                                      <% 
+                                      for (WareHouse lista : wareHouseList)  
+                                      {%> 
+                                      <tr> 
+                                        <td><%=lista.getName()%></td>
+                                        <td><%=lista.getAddress()%></td>
+                                        <td><%=lista.getInventory().get(0).getName() %></td>
+                                        <td><%=lista.getInventory().get(0).getCode()  %></td>
+                                        <td><%=lista.getInventory().get(0).getDescription() %></td>
+                                        <td><%=lista.getInventory().get(0).getCost() %></td>
+                                        <td><%=lista.getInventory().get(0).getReOrderPoint() %></td>
+                                        <td><%=lista.getInventory().get(0).getOnHand() %></td>
+                                      </tr>
+                                    <%} 
+                                    %>
+                             
                                 </table>
                             
                             

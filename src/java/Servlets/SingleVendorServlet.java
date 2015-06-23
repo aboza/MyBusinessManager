@@ -34,8 +34,10 @@ public class SingleVendorServlet extends HttpServlet {
         int vendorId;
         vendorId = Integer.parseInt(request.getParameter("vendorId"));
         DAOVendor vendorDAO = new DAOVendor();
+        
         Vendor vendorBean = vendorDAO.getSingleVendorById(vendorId);
         request.getSession().setAttribute("currentVendor", vendorBean);
+        
         request.getRequestDispatcher("EditVendorPage.jsp").forward(request, response);
 
     }

@@ -1,16 +1,17 @@
 <%-- 
-    Document   : MainPage
-    Created on : 03/06/2015, 12:00:28 AM
-    Author     : AlexisDev
+    Document   : ShowWarehouseONE
+    Created on : 22-jun-2015, 14:19:06
+    Author     : Rafael
 --%>
 
-<%@page import="DAO.DAOUser"%>
-<%@page import="Beans.User"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Beans.WareHouse"%>
+
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MyBusinessManager|MainPage</title>
+        <title>MyBusinessManager|ShowWareHouseOne</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -28,7 +29,8 @@
         <link rel="stylesheet" href="css/style-noscript.css" />
         </noscript>
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
-    </head>
+        
+   </head>
     <body class="left-sidebar">
         <!-- Header -->
         <div id="header">
@@ -48,34 +50,29 @@
 
         </div>
         <!-- Main -->
-        <%User activeUser = (User) session.getAttribute("currentSessionUser");
-            DAOUser userDAO = new DAOUser();%>
+        
+
         <div class="wrapper style1">
             <div class="container">
                 <div class="row">
                     <div class="4u" id="sidebar">
                         <section>
-                            <%if (userDAO.UserHasActionPrivilege("actCanAccessInventory", activeUser)) {%>
                             <header>
                                 <h3><a href="">Inventario</a></h3>
                             </header>
                             <p>
                                 Obten control total sobre tu inventario,
                                 manteniendo siempre los productos que necesitas.
-                            </p>                           
+                            </p>
                             <a href="ShowWareHouseServlet" class="button">Inventario</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
                             <header>
-                                <h3><a href="">Proveedores</a></h3>
+                                <h3><a href="EditVendorServlet">Inventario</a></h3>
                             </header>
                             <p>
                                 Mante siempre a tus proveedores cerca, nunca
                                 se sabe cuando estes en apuros.
                             </p>
                             <a href="ShowVendorServlet" class="button">Proveedores</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessBilling", activeUser)) {%>
                             <header>
                                 <h3><a href="">Clientes</a></h3>
                             </header>
@@ -91,34 +88,71 @@
                                 Ejecuta cobros rapidos y sencillos desde
                                 MyBusinessManager
                             </p>
-                            <a href="ShowCashierServlet" class="button">Facturación</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
-                            <header>
-                                <h3><a href="">Seguridad</a></h3>
+                            <a href="" class="button">Facturación</a>
+                            <h3><a href="">Seguridad</a></h3>
                             </header>
                             <p>
                                 Brinda seguridad y privilegios de acceso
                                 a MyBusinessManeger
                             </p>
-                            <a href="SecurityPage.jsp" class="button">Seguridad</a>
-                            <%}
-                                if (userDAO.UserHasActionPrivilege("actCanAccessReports", activeUser)) {%>
-                            <header>
-                                <h3><a href="">Reportes</a></h3>
-                            </header>
-                            <p>
-                                Reportes del Sistema
-                            </p>
-                            <a href="" class="button">Reportes</a>
-                            <%}%>
+                            <a href="" class="button">Seguridad</a>
                         </section>
                         <hr />
                     </div>
+                    
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
+                            <header>
+                                <%ArrayList<WareHouse> pwareHouse = (ArrayList<WareHouse>) request.getAttribute("wareHouseONE");%>  
+                                <%ArrayList<WareHouse> wareHouseListALL = (ArrayList<WareHouse>) request.getAttribute("WarehouseListALL");        
+                                 String Bodega = (String) request.getAttribute("BODEGA"); %>
+                                <h2>Inventario <%= Bodega%></h2>  
+ 
+                            </header>
+                            
+                            <form method="post" action="ShowWareHouseServletONE">
+                                
+                            <select class="select" id="whoWareHouse" name="whoWareHouse">           
+                                    <option value="Todas">Todas</option>                              
+                            <%for (WareHouse listap : wareHouseListALL)  
+                                      {%> 
+                                      <option value= <%=listap.getName()%> > <%=listap.getName()%></option>                                      
+                                      <%}%>      
+                            </select>
+                            
+                        <input type="submit" value="Mostrar" name="Mostrar">
+                          </form>    
+                            <table>
 
+                                <tr>
+                                  <td><strong>Producto</strong></td>
+                                  <td><strong>Codigo</strong></td>
+                                  <td><strong>Descripcion</strong></td>
+                                  <td><strong>Costo</strong></td>
+                                  <td><strong>Reorder Point</strong></td>
+                                  <td><strong>On hand</strong></td>
+                         
+                                  
+                                      <% 
+                                      for (WareHouse lista : pwareHouse)  
+                                      {%> 
+                                      <tr> 
 
+                                        <td><%=lista.getInventory().get(0).getName() %></td>
+                                        <td><%=lista.getInventory().get(0).getCode()  %></td>
+                                        <td><%=lista.getInventory().get(0).getDescription() %></td>
+                                        <td><%=lista.getInventory().get(0).getCost() %></td>
+                                        <td><%=lista.getInventory().get(0).getReOrderPoint() %></td>
+                                        <td><%=lista.getInventory().get(0).getOnHand() %></td>
+                                      </tr>
+                                    <%} 
+                                    %>     
+                                  
+                                  
+                                  
+                                </table>
+                            
+                            
                         </article>
                     </div>
                 </div>
