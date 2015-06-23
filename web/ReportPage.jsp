@@ -4,6 +4,8 @@
     Author     : Bryan
 --%>
 
+<%@page import="Beans.Customer"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="DAO.DAOUser"%>
 <%@page import="Beans.User"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
@@ -142,8 +144,13 @@
                                             }
                                         %>
                                         <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
-                                        <b>Id cliente</b>
-                                        <input class="longtext" name="costumerId" id="costumerId" >
+                                        <b>Cliente</b>
+                                        <%ArrayList<Customer> customerList = (ArrayList<Customer>) session.getAttribute("CustomerList");%>                             
+                                        <select class="select" name="customerId" id="customerId">
+                                            <%for (Customer actualCustomer : customerList) {%><%--INICIO DEL FOR--%>
+                                            <option class="option" value="<%=actualCustomer.getId()%>"><%=actualCustomer.getName()%></option>
+                                            <%}%><%--FIN DEL FOR--%>
+                                        </select>
                                         <div>
                                             <input class="button form-button-submit" type="submit" value="Compras del cliente" name="Create">
                                         </div>

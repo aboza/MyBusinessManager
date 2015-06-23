@@ -71,7 +71,7 @@ public class CreateClientBuyReportServlet extends HttpServlet {
             JasperReport jasperReport = null;
             JasperDesign jasperDesign = null;
             Map parameters = new HashMap();
-            parameters.put("pCostumerId",Integer.parseInt(request.getParameter("costumerId")));
+            parameters.put("pCostumerId",Integer.parseInt(request.getParameter("customerId")));
             String path = getServletContext().getRealPath("/Reports/");
             jasperDesign = JRXmlLoader.load(path+"/ClienteBuyReport.jrxml");
             jasperReport = JasperCompileManager.compileReport(jasperDesign);

@@ -132,7 +132,7 @@
                                 <%ArrayList<Receipt> receiptList = (ArrayList<Receipt>) request.getAttribute("ReceiptList");%>
                                 <div class="row">
                                     <%for (Receipt actualReceipt : receiptList) {%>
-                                    <A href="SingleReceiptServlet?receiptId=<%=actualReceipt.getId()%>" ><%=actualReceipt.getId()%></A>
+                                    <A href="SingleReceiptServlet?receiptId=<%=actualReceipt.getId()%>" >Factura No.<%=actualReceipt.getNumber()%></A>
                                     <div class="row"></div>
                                     <%}%>
                                 </div>

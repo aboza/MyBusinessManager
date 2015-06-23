@@ -49,7 +49,7 @@ public class CreateCashierServlet extends HttpServlet {
         //Declaro e inicio las variables
         RequestDispatcher requestDispatcher;
         //Recuperamos todos los parametros de nuestro JSP
-        int id = (int) request.getSession().getAttribute("cashierId");//lo obtenemos de las variables de session
+        //int id = (int) request.getSession().getAttribute("cashierId");//lo obtenemos de las variables de session
         String vendorName = request.getParameter("cashierName");
 
         if (vendorName.isEmpty()) {
@@ -60,7 +60,7 @@ public class CreateCashierServlet extends HttpServlet {
             //Intanciamos los objetos necesarios
             Cashier CreateCashier = new Cashier();
             //asignamos los atributos
-            CreateCashier.setId(id);
+           // CreateCashier.setId(id);
             CreateCashier.setName(vendorName);
 
             //Nos encargamos de la creacion

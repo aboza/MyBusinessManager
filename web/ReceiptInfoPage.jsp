@@ -129,12 +129,7 @@
                                         error = request.getAttribute("errorMessage").toString();
                                     }
                                 %>
-                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
-                                <h1>ID</h1>
-                                <input class="longtext" name="receiptID" id="receiptID" value="<%=currentReceipt.getId()%>">
-                                <h1>ID de Cliente</h1>
-                                <input class="longtext" name="customerID" id="customerID" value="<%=currentReceipt.getCustomer().getId()%>">
-                                <h1>Nombre de Cliente</h1>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>                                                             
                                 <input class="longtext" name="customerName" id="customerName" value="<%=currentReceipt.getCustomer().getName()%>">
                                 <h1>Nombre de Compañia de Cliente</h1>
                                 <input class="longtext" name="customerCompany" id="customerCompany" value="<%=currentReceipt.getCustomer().getCompanyName()%>">

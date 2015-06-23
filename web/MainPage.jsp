@@ -110,7 +110,7 @@
                             <p>
                                 Reportes del Sistema
                             </p>
-                            <a href="ReportPage.jsp" class="button">Reportes</a>
+                            <a href="ShowReportsServlet" class="button">Reportes</a>
                             <%}%>
                         </section>
                         <hr />
