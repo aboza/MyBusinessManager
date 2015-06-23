@@ -63,7 +63,7 @@
                                 Obten control total sobre tu inventario,
                                 manteniendo siempre los productos que necesitas.
                             </p>                           
-                            <a href="" class="button">Inventario</a>
+                            <a href="ShowWareHouseServlet" class="button">Inventario</a>
                             <header>
                                 <h3><a href="">Proveedores</a></h3>
                             </header>
@@ -89,7 +89,7 @@
                                 Ejecuta cobros rapidos y sencillos desde
                                 MyBusinessManager
                             </p>
-                            <a href="" class="button">Facturación</a>
+                            <a href="ShowCashierServlet" class="button">Facturación</a>
                             <%}
                                 if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
                             <header>
@@ -108,7 +108,7 @@
                             <p>
                                 Reportes del Sistema
                             </p>
-                            <a href="" class="button">Reportes</a>
+                            <a href="ReportPage.jsp" class="button">Reportes</a>
                             <%}%>
                         </section>
                         <hr />

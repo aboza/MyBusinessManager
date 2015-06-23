@@ -1,0 +1,64 @@
+create or replace 
+PROCEDURE CREATE_Cashier(
+pUserName IN VARCHAR2)
+IS
+BEGIN
+SAVEPOINT MY_SAVEPOINT;
+BEGIN
+
+INSERT INTO BM_CASHIERS(name)
+  VALUES (pUserName);
+  
+END;
+
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+COMMIT;
+END;
+
+create or replace 
+PROCEDURE DELETE_Cashier(pcashierId IN NUMBER)
+IS
+BEGIN
+
+SAVEPOINT MY_SAVEPOINT;
+
+BEGIN
+DELETE BM_CASHIERS
+WHERE cashier_id = pcashierid;
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+END;
+COMMIT;
+END;
+
+create or replace 
+PROCEDURE UPDATE_Cashier(
+pCashier_Id IN NUMBER,
+pName IN VARCHAR2)
+IS
+BEGIN
+SAVEPOINT MY_SAVEPOINT;
+BEGIN
+
+UPDATE BM_CASHIERS
+SET
+name = pName
+WHERE cashier_id = pCashier_Id;
+
+END;
+  
+  EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK TO MY_SAVEPOINT;
+COMMIT;
+END;
+
+INSERT INTO BM_PERMISSIONS(code,description)
+        VALUES('actCanCreateCashiers','Usuario puede crear Cajeros');
+
+INSERT INTO BM_PERMISSIONS(code,description)
+        VALUES('actCanEditCashiers','Usuario puede editar Cajeros');
