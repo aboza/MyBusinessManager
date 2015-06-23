@@ -91,7 +91,7 @@
                                 Ejecuta cobros rapidos y sencillos desde
                                 MyBusinessManager
                             </p>
-                            <a href="ShowCashierServlet" class="button">Facturación</a>
+                            <a href="BillingPage.jsp" class="button">Facturación</a>
                             <%}
                                 if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
                             <header>
@@ -110,7 +110,7 @@
                             <p>
                                 Reportes del Sistema
                             </p>
-                            <a href="" class="button">Reportes</a>
+                            <a href="ReportPage.jsp" class="button">Reportes</a>
                             <%}%>
                         </section>
                         <hr />

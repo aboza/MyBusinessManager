@@ -1,18 +1,16 @@
 <%-- 
-    Document   : CustomerPage
-    Created on : 04/06/2015, 10:29:52 PM
-    Author     : AlexisDev
+    Document   : ReportsPage
+    Created on : 21/06/2015, 19:00:28 PM
+    Author     : Bryan
 --%>
 
 <%@page import="DAO.DAOUser"%>
 <%@page import="Beans.User"%>
-<%@page import="Beans.Customer"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MyBusinessManager|MainPage</title>
+        <title>MyBusinessManager|ReportsPage</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -91,7 +89,7 @@
                                 Ejecuta cobros rapidos y sencillos desde
                                 MyBusinessManager
                             </p>
-                            <a href="BillingPage.jsp" class="button">Facturación</a>
+                            <a href="ShowCashierServlet" class="button">Facturación</a>
                             <%}
                                 if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
                             <header>
@@ -118,20 +116,74 @@
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h2>Clientes</h2>
-                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
-                                <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
-                                <%}%>
-                                <h1>Clientes Activos</h1>
-                                <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
-                                <div class="row">
-                                    <%for (Customer actualCustomer : customerList) {%>
-                                    <A href="SingleCustomerServlet?customerId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
-                                    <div class="row"></div>
-                                    <%}%>
+                                <h2>Reportes</h2>
+                                <h3>Simples</h3>
+                                <br/>
+                                <div>
+                                    <a href="CreateVendorsReportServlet" class="button">Reporte de proveedores</a>
+                                </div>
+                                <br/>
+                                <div>
+                                    <a href="CreateProductsReportServlet" class="button">Inventario de productos</a>
+                                </div>
+                                <br/>
+                                <div>
+                                    <a href="CreateCashiersReportServlet" class="button">Reporte general de ventas</a>
+                                </div>
+                                <br/>
+                                <h3>Con busqueda</h3>
+                                <br/>
+                                <b>Reporte de compras de un cliente</b>
+                                <div>
+                                    <form method="post" action="CreateClientBuyReportServlet">
+                                        <% String error = "";
+                                            if (request.getAttribute("errorMessage") != null) {
+                                                error = request.getAttribute("errorMessage").toString();
+                                            }
+                                        %>
+                                        <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                        <b>Id cliente</b>
+                                        <input class="longtext" name="costumerId" id="costumerId" >
+                                        <div>
+                                            <input class="button form-button-submit" type="submit" value="Compras del cliente" name="Create">
+                                        </div>
+                                    </form>
+                                </div>
+                                <br/>
+                                <b>Crear factura</b>
+                                <div>
+                                    <form method="post" action="CreateReceiptServlet">
+                                        <% String error2 = "";
+                                            if (request.getAttribute("errorMessage") != null) {
+                                                error = request.getAttribute("errorMessage").toString();
+                                            }
+                                        %>
+                                        <p  class="" name="error" color="red"><font color="red"><%=error2%></font></p>
+                                        <b>Id factura</b>
+                                        <input class="longtext" name="receiptID" id="receiptID" >
+                                        <div>
+                                            <input class="button form-button-submit" type="submit" value="Crear factura" name="Create">
+                                        </div>
+                                    </form>
+                                </div>
+                                <br/>
+                                <b>Reporte de ventas por punto de venta</b>
+                                <div>
+                                    <form method="post" action="CreateCashierReportServlet">
+                                        <% String error3 = "";
+                                            if (request.getAttribute("errorMessage") != null) {
+                                                error = request.getAttribute("errorMessage").toString();
+                                            }
+                                        %>
+                                        <p  class="" name="error" color="red"><font color="red"><%=error3%></font></p>
+                                        <b>Id punto de venta</b>
+                                        <input class="longtext" name="cashierID" id="receiptID" >
+                                        <div>
+                                            <input class="button form-button-submit" type="submit" value="Reporte de Punto de Venta" name="Create">
+                                        </div>
+                                    </form>
                                 </div>
                             </header>
-
                         </article>
                     </div>
                 </div>
@@ -162,4 +214,3 @@
         </div>
     </body>
 </html>
-

@@ -49,7 +49,7 @@ public class CreateVendorServlet extends HttpServlet {
         //Declaro e inicio las variables
         RequestDispatcher requestDispatcher;
         //Recuperamos todos los parametros de nuestro JSP
-        int id = (int) request.getSession().getAttribute("vendorId");//lo obtenemos de las variables de session
+       // int id = (int) request.getSession().getAttribute("vendorId");//lo obtenemos de las variables de session
         String vendorName = request.getParameter("vendorName");
         String companyName = request.getParameter("companyName");
         String contact = request.getParameter("contact");
@@ -68,7 +68,7 @@ public class CreateVendorServlet extends HttpServlet {
             //Intanciamos los objetos necesarios
             Vendor CreateVendor = new Vendor();
             //asignamos los atributos
-            CreateVendor.setId(id);
+           // CreateVendor.setId(id);
             CreateVendor.setName(vendorName);
             CreateVendor.setCompanyName(companyName);
             CreateVendor.setContact(contact);

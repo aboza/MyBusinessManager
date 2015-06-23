@@ -1,12 +1,18 @@
 <%-- 
-    Document   : CustomerPage
-    Created on : 04/06/2015, 10:29:52 PM
-    Author     : AlexisDev
+    Document   : ReceiptPage
+    Created on : 22-jun-2015, 18:59:02
+    Author     : Glenn
+--%>
+
+<%-- 
+    Document   : CashierPage
+    Created on : 21-jun-2015, 3:27:25
+    Author     : Glenn
 --%>
 
 <%@page import="DAO.DAOUser"%>
 <%@page import="Beans.User"%>
-<%@page import="Beans.Customer"%>
+<%@page import="Beans.Receipt"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
@@ -118,15 +124,15 @@
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h2>Clientes</h2>
-                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
-                                <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
-                                <%}%>
-                                <h1>Clientes Activos</h1>
-                                <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
+                                <h2>Facturas</h2>
+                                <h1>Facturas</h1>
+                                <p>
+                                Click en cualquier número de identificación de factura para ver los detalles
+                                </p>
+                                <%ArrayList<Receipt> receiptList = (ArrayList<Receipt>) request.getAttribute("ReceiptList");%>
                                 <div class="row">
-                                    <%for (Customer actualCustomer : customerList) {%>
-                                    <A href="SingleCustomerServlet?customerId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
+                                    <%for (Receipt actualReceipt : receiptList) {%>
+                                    <A href="SingleReceiptServlet?receiptId=<%=actualReceipt.getId()%>" ><%=actualReceipt.getId()%></A>
                                     <div class="row"></div>
                                     <%}%>
                                 </div>
@@ -162,4 +168,3 @@
         </div>
     </body>
 </html>
-

@@ -11,6 +11,7 @@ package Beans;
  */
 public class ReceiptDetail {
     private Item item;
+    private int itemID;
     private int quantity;
     private float tax;
     private float discount;
@@ -68,5 +69,12 @@ public class ReceiptDetail {
         this.totalAmount = totalAmount;
     }
     
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
+    }
     
 }

@@ -1,13 +1,14 @@
 <%-- 
-    Document   : CustomerPage
-    Created on : 04/06/2015, 10:29:52 PM
-    Author     : AlexisDev
+    Document   : ReceiptInfoPage
+    Created on : 22-jun-2015, 19:12:40
+    Author     : Glenn
 --%>
 
 <%@page import="DAO.DAOUser"%>
 <%@page import="Beans.User"%>
-<%@page import="Beans.Customer"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="Beans.ReceiptDetail"%>
+<%@page import="Beans.Permission"%>
+<%@page import="Beans.Receipt"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -118,20 +119,76 @@
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
                             <header>
-                                <h2>Clientes</h2>
-                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
-                                <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
-                                <%}%>
-                                <h1>Clientes Activos</h1>
-                                <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
-                                <div class="row">
-                                    <%for (Customer actualCustomer : customerList) {%>
-                                    <A href="SingleCustomerServlet?customerId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
-                                    <div class="row"></div>
-                                    <%}%>
-                                </div>
+                                <h2>Factura</h2>  
                             </header>
-
+                            <%Receipt currentReceipt = (Receipt) session.getAttribute("currentReceipt");
+                                session.setAttribute("receiptId", currentReceipt.getId());%>
+                            <form method="post" action="">    
+                                <% String error = "";
+                                    if (request.getAttribute("errorMessage") != null) {
+                                        error = request.getAttribute("errorMessage").toString();
+                                    }
+                                %>
+                                <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                <h1>ID</h1>
+                                <input class="longtext" name="receiptID" id="receiptID" value="<%=currentReceipt.getId()%>">
+                                <h1>ID de Cliente</h1>
+                                <input class="longtext" name="customerID" id="customerID" value="<%=currentReceipt.getCustomer().getId()%>">
+                                <h1>Nombre de Cliente</h1>
+                                <input class="longtext" name="customerName" id="customerName" value="<%=currentReceipt.getCustomer().getName()%>">
+                                <h1>Nombre de Compañia de Cliente</h1>
+                                <input class="longtext" name="customerCompany" id="customerCompany" value="<%=currentReceipt.getCustomer().getCompanyName()%>">
+                                <h1>Telefono</h1>
+                                <input class="longtext" name="customerPhone" id="customerPhone" value="<%=currentReceipt.getCustomer().getPhone()%>">
+                                <h1>Fax</h1>
+                                <input class="longtext" name="customerFax" id="customerFax" value="<%=currentReceipt.getCustomer().getFax()%>">
+                                <h1>Email</h1>
+                                <input class="longtext" name="customerEmail" id="customerEmail" value="<%=currentReceipt.getCustomer().getEmail()%>">
+                                <h1>BILL_TO</h1>
+                                <input class="longtext" name="customerBillTo" id="customerBillTo" value="<%=currentReceipt.getCustomer().getBillTo()%>">
+                                <h1>SHIP_TO</h1>
+                                <input class="longtext" name="customerShipTo" id="customerShipTo" value="<%=currentReceipt.getCustomer().getShipTo()%>">
+                                <p>Detalle</p>
+                                <table border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Cantidad</th>
+                                            <th>Costo</th>
+                                            <th>Impuesto</th>
+                                            <th>Descuento</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                        <%for (ReceiptDetail detallefactura : currentReceipt.getDetails()) {%><%--INICIO DEL FOR--%>
+                                    <tbody>
+                                            <td><%=detallefactura.getItemID()%></td>
+                                            <td><%=detallefactura.getQuantity()%></td>
+                                            <td><%=detallefactura.getCost()%></td>
+                                            <td><%=detallefactura.getTax()%></td>
+                                            <td><%=detallefactura.getDiscount()%></td>
+                                            <td><%=detallefactura.getTotalAmount()%></td>
+                                        </tr>
+                                    </tbody>
+                                    <% }%><%--FIN DEL FOR--%>
+                                </table>
+                                <h1>Fecha</h1>
+                                <input class="longtext" name="receiptDate" id="receiptDate" value="<%=currentReceipt.getDate()%>">
+                                <h1>Número de Factura</h1>
+                                <input class="longtext" name="receiptNumber" id="receiptNumber" value="<%=currentReceipt.getNumber()%>">
+                                <h1>Método de Pago</h1>
+                                <input class="longtext" name="receiptPaymentMethod" id="receiptPaymentMethod" value="<%=currentReceipt.getPaymentMethod()%>">
+                                <h1>Observaciones</h1>
+                                <input class="longtext" name="receiptObservations" id="receiptObservations" value="<%=currentReceipt.getObservations()%>">
+                                <h1>Descuento</h1>
+                                <input class="longtext" name="receiptDiscount" id="receiptDiscount" value="<%=currentReceipt.getDiscount()%>">
+                                <h1>Impuesto</h1>
+                                <input class="longtext" name="receiptTax" id="receiptTax" value="<%=currentReceipt.getTax()%>">
+                                <h1>Subtotal</h1>
+                                <input class="longtext" name="receiptSubTotal" id="receiptSubTotal" value="<%=currentReceipt.getSubtotal()%>">
+                                <h1>Total</h1>
+                                <input class="longtext" name="receiptTotal" id="receiptTotal" value="<%=currentReceipt.getTotal()%>">
+                            </form>
                         </article>
                     </div>
                 </div>
