@@ -117,12 +117,72 @@
                         <article id="main">
                             <header>
                                 <h2>Reportes</h2>
-                                <p>
+                                <h3>Simples</h3>
+                                <br/>
+                                <div>
                                     <a href="CreateVendorsReportServlet" class="button">Reporte de proveedores</a>
-                                </p>
-                                <p>
+                                </div>
+                                <br/>
+                                <div>
                                     <a href="CreateProductsReportServlet" class="button">Inventario de productos</a>
-                                </p>
+                                </div>
+                                <br/>
+                                <div>
+                                    <a href="CreateCashiersReportServlet" class="button">Reporte general de ventas</a>
+                                </div>
+                                <br/>
+                                <h3>Con busqueda</h3>
+                                <br/>
+                                <b>Reporte de compras de un cliente</b>
+                                <div>
+                                    <form method="post" action="CreateClientBuyReportServlet">
+                                        <% String error = "";
+                                            if (request.getAttribute("errorMessage") != null) {
+                                                error = request.getAttribute("errorMessage").toString();
+                                            }
+                                        %>
+                                        <p  class="" name="error" color="red"><font color="red"><%=error%></font></p>
+                                        <b>Id cliente</b>
+                                        <input class="longtext" name="costumerId" id="costumerId" >
+                                        <div>
+                                            <input class="button form-button-submit" type="submit" value="Compras del cliente" name="Create">
+                                        </div>
+                                    </form>
+                                </div>
+                                <br/>
+                                <b>Crear factura</b>
+                                <div>
+                                    <form method="post" action="CreateReceiptServlet">
+                                        <% String error2 = "";
+                                            if (request.getAttribute("errorMessage") != null) {
+                                                error = request.getAttribute("errorMessage").toString();
+                                            }
+                                        %>
+                                        <p  class="" name="error" color="red"><font color="red"><%=error2%></font></p>
+                                        <b>Id factura</b>
+                                        <input class="longtext" name="receiptID" id="receiptID" >
+                                        <div>
+                                            <input class="button form-button-submit" type="submit" value="Crear factura" name="Create">
+                                        </div>
+                                    </form>
+                                </div>
+                                <br/>
+                                <b>Reporte de ventas por punto de venta</b>
+                                <div>
+                                    <form method="post" action="CreateCashierReportServlet">
+                                        <% String error3 = "";
+                                            if (request.getAttribute("errorMessage") != null) {
+                                                error = request.getAttribute("errorMessage").toString();
+                                            }
+                                        %>
+                                        <p  class="" name="error" color="red"><font color="red"><%=error3%></font></p>
+                                        <b>Id punto de venta</b>
+                                        <input class="longtext" name="cashierID" id="receiptID" >
+                                        <div>
+                                            <input class="button form-button-submit" type="submit" value="Reporte de Punto de Venta" name="Create">
+                                        </div>
+                                    </form>
+                                </div>
                             </header>
                         </article>
                     </div>
