@@ -49,7 +49,7 @@ public class CreateCustomerServlet extends HttpServlet {
         //Declaro e inicio las variables
         RequestDispatcher requestDispatcher;
         //Recuperamos todos los parametros de nuestro JSP
-        int id = (int) request.getSession().getAttribute("customerId");//lo obtenemos de las variables de session
+       // int id = (int) request.getSession().getAttribute("customerId");//lo obtenemos de las variables de session
         String customerName = request.getParameter("customerName");
         String companyName = request.getParameter("companyName");
         String phone = request.getParameter("phone");
@@ -67,7 +67,7 @@ public class CreateCustomerServlet extends HttpServlet {
             //Intanciamos los objetos necesarios
             Customer CreateCustomer = new Customer();
             //asignamos los atributos
-            CreateCustomer.setId(id);
+           // CreateCustomer.setId(id);
             CreateCustomer.setName(customerName);
             CreateCustomer.setCompanyName(companyName);
             CreateCustomer.setPhone(phone);
