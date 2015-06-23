@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author AlexisDev
  */
 public class Receipt {
+    private int id; 
     private Customer customer;
     private Date date;
     private int number;
@@ -28,6 +29,14 @@ public class Receipt {
     public Receipt() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public Customer getCustomer() {
         return customer;
     }
@@ -108,6 +117,12 @@ public class Receipt {
         this.posted = posted;
     }
     
-    
+    public ArrayList<ReceiptDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(ArrayList<ReceiptDetail> pLista) {
+        this.details = pLista;
+    }
     
 }

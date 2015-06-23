@@ -84,6 +84,14 @@
         <servlet-name>CreateCashierServlet</servlet-name>
         <servlet-class>Servlets.CreateCashierServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowReceiptServlet</servlet-name>
+        <servlet-class>Servlets.ShowReceiptServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingleReceiptServlet</servlet-name>
+        <servlet-class>Servlets.SingleReceiptServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
@@ -167,6 +175,14 @@
     <servlet-mapping>
         <servlet-name>SingleCashierServlet</servlet-name>
         <url-pattern>/SingleCashierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowReceiptServlet</servlet-name>
+        <url-pattern>/ShowReceiptServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingleReceiptServlet</servlet-name>
+        <url-pattern>/SingleReceiptServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,13 +1,11 @@
 <%-- 
-    Document   : CustomerPage
-    Created on : 04/06/2015, 10:29:52 PM
-    Author     : AlexisDev
+    Document   : BillingPage
+    Created on : 22-jun-2015, 14:37:08
+    Author     : Glenn
 --%>
 
 <%@page import="DAO.DAOUser"%>
 <%@page import="Beans.User"%>
-<%@page import="Beans.Customer"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
@@ -91,7 +89,7 @@
                                 Ejecuta cobros rapidos y sencillos desde
                                 MyBusinessManager
                             </p>
-                            <a href="BillingPage.jsp" class="button">Facturación</a>
+                            <a href="ShowCashierServlet" class="button">Facturación</a>
                             <%}
                                 if (userDAO.UserHasActionPrivilege("actCanAccessSecurity", activeUser)) {%>
                             <header>
@@ -117,21 +115,24 @@
                     </div>
                     <div class="8u skel-cell-important" id="content">
                         <article id="main">
+                            <!-- TO DO!!!! poner "si tiene permiso entonces: -->
                             <header>
-                                <h2>Clientes</h2>
-                                <%if (userDAO.UserHasActionPrivilege("actCanCreateCustomers", activeUser)) {%>
-                                <a href="CreateCustomerServlet" class="button">Nuevo Cliente</a>
-                                <%}%>
-                                <h1>Clientes Activos</h1>
-                                <%ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("CustomerList");%>
-                                <div class="row">
-                                    <%for (Customer actualCustomer : customerList) {%>
-                                    <A href="SingleCustomerServlet?customerId=<%=actualCustomer.getId()%>" ><%=actualCustomer.getName()%></A>
-                                    <div class="row"></div>
-                                    <%}%>
-                                </div>
+                                <h3><a href="">Cajeros</a></h3>
                             </header>
-
+                            <p>
+                                Administración general de cajeros
+                            </p>
+                            <a href="ShowCashierServlet" class="button">Cajeros</a>
+                            <!-- TO DO!!!! cerrar "si tiene permiso entonces:-->
+                            <!-- TO DO!!!! poner "si tiene permiso entonces: -->
+                            <header>
+                                <h3><a href="">Facturas</a></h3>
+                            </header>
+                            <p>
+                                Muestra las facturas dosponibles
+                            </p>
+                            <a href="ShowReceiptServlet" class="button">Facturas</a>
+                            <!-- TO DO!!!! cerrar "si tiene permiso entonces:-->
                         </article>
                     </div>
                 </div>
@@ -162,4 +163,3 @@
         </div>
     </body>
 </html>
-
